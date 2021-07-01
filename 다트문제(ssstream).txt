@@ -1,0 +1,35 @@
+#include <string>
+#include <sstream>
+#include <cmath>
+#include <iostream>
+using namespace std;
+
+int main(void) 
+{
+    string dartResult = "1T2D3D#";
+    stringstream ss(dartResult);
+// stringstream ss;
+// ss.str(dartResult );
+
+
+    int score;
+    char bonus;
+    char option;
+
+    ss >> score;
+    bonus = ss.get();
+    option = ss.get();
+    ss.unget();
+    cout<<score<<" "<<bonus<<" "<<option<<endl;
+    
+    ss >> score;
+    bonus = ss.get();
+    option = ss.get();
+    ss.unget();
+    cout<<score<<" "<<bonus<<" "<<option<<endl;
+	
+    ss >> score;
+    bonus = ss.get();
+    option = ss.get();
+    cout<<score<<" "<<bonus<<" "<<option<<endl; 
+}
