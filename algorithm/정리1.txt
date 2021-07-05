@@ -38,4 +38,20 @@ pair<int, string> p = make_pair(1,"choiiis");
 pair<int, string> p1(1, "choiiis");
 pair<int, string> p2=p1; //OK
 pair<int, string> p2(p1); //OK
+
+
+*이상한 min max 
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main(void) {
+	string s = "abcabcabcabcdededededede";
+    	int answer = 10;
+   	 answer=min(answer , s.length()); // 랙처먹음 
+	//int len = s.length(); 하고 len을 넣어주면 또 됨.... 
+   	 cout<<answer<<endl;
+    
+   	 return 0;
+}
 	
