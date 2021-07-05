@@ -1,0 +1,41 @@
+#include <cmath>
+std namespace 안에서 정의됨
+
+#include <algorithm>
+        reverse
+        sort
+        -sort(start,end)
+        -sort(start,end,compare)
+        -sort(start,end,grearter<자료형>())
+
+        unique
+                vector<int> v = { 1, 2, 3, 1, 2 }; 
+                sort(v.begin(), v.end()); 
+                        //unique(v.begin(), v.end());
+                        //주석 풀면 답 틀림. unique는 제일 처음 나오는 쓰레기 값의 iterator를 반환.
+                v.erase(unique(v.begin(), v.end()),v.end()); //1,2,3
+
+
+#비트연산 
+for(int i=0; i<n; i++)
+        arr1[i] |= arr2[i]; -->or연산  00110010 |= 10101010 -->10111010
+--> 지도 문제
+
+#include <cctype> //C++ --> 근데 없어도 작동하는듯...
+toupper
+tolower
+
+
+#pair
+pair<int, string> p;
+p.first = 1;
+p.second = "choiiis";
+cout<<p.first<<" "<< p.second; //OK
+
+pair<int, string> p = make_pair(1,"choiiis");
+
+#pair 복사 생성
+pair<int, string> p1(1, "choiiis");
+pair<int, string> p2=p1; //OK
+pair<int, string> p2(p1); //OK
+	

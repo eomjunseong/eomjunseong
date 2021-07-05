@@ -1,0 +1,14 @@
+priority_queue<T, Container, Compare>
+
+*default//내림차순 
+priority_queue<int> pq;  // - >  priority_queue<int, vector<int>, less<int>> pq;
+
+*오름차순 (greater : vector: 5,4,3,2,1 , but pq-->1,2,3,4,5)
+priority_queue<int,vector<int>,greater<int>> temp;
+
+
+push(element)
+pop()
+top()
+empty()
+size()

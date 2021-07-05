@@ -1,0 +1,32 @@
+vector 컨테이너 (using namespace std)
+
+- 자동으로 메모리가 할당되는 배열
+- 맨 뒤쪽에서 삽입과 삭제가 가능
+- 중간에 값을 삽입 하거나 삭제할 수도 있음 
+- 배열기반이라, 삽입 삭제가 빈번하게 일어난다면 비효율적
+
+vector<int> v //빈벡터
+vector<int> v(5) //0으로 초기화된 5개원소
+vector<int> v(5,2)// 2로 초기화된 5개원소
+vector<int> v2(v1)//v1을 복사 생성 
+
+v.size();
+v.empty(); -->true false;
+
+v.front(); // 첫번째 반환
+v.back(); //마지막 반환
+v.begin(); //첫번쨰 가리킴
+v.end(); // 마지막 "다음" 가리킴 
+v.clear(); //원소제거 capcity 유지 
+
+v.push_back(7);
+v.pop_back(); //마지막 원소 제거 
+
+vec.insert(vec.begin()+1, 3);; // 2번쨰위치에 3삽입 
+v.insert(vec.begin()+1, 3, 4); // 2번쨰 위치에 3개의 4를 삽입 
+
+v.erase(vec.begin()+2); //3번쨰 삭제;
+vec.erase(vec.begin()+1,vec.begin()+3); // [) 1,2번쨰 삭제; 
+
+//정렬후 사용 --> 중복 제거 
+unique(v.begin(), v.end());

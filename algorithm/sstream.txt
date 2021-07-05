@@ -1,0 +1,20 @@
+#include <sstream>
+
+*record: 
+vector<string> 
+["Enter uid1234 Muzi", 
+"Enter uid4567 Prodo",
+"Leave uid1234",
+"Enter uid1234 Prodo",
+"Change uid4567 Ryan"]
+
+stringstream ss; 
+string action; 
+string id; 
+string nickname;
+
+ss.str(record[i]); 
+
+ss>>action 
+ss>>id;
+ss>>nickname; ..... 

@@ -1,0 +1,25 @@
+#include <stack>
+
+//stack<int> q2({ 1, 2, 3, 4, 5 });  OK
+stack<int> s;
+
+s.push(1);
+s.push(2);
+s.push(3);
+
+s.top(); //가장 상단 반환
+s.pop(); //삭제
+
+s.size();//bool
+s.empty();
+
+*복사됨//다른 주소값
+stack<int>copy = s;
+
+//O
+while(!s.empty()){
+    cout<<s.top()<<" ";
+    s.pop();
+}
+
+//인덱스 접근 X 

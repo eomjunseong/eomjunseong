@@ -1,0 +1,40 @@
+#include <queue>
+
+*BFS에 사용
+//queue<int> q2({ 1, 2, 3, 4, 5 }); OK
+queue<int> q; 
+q.push(1);
+q.push(2);  
+q.push(3); 
+
+q.size();      // queue의 크기 출력
+q.empty();     // queue가 비어있는지 check (비어있다면 true)
+
+q.front();     // queue의 가장 첫번째 원소 출력
+q.back();      // queue의 가장 마지막 원소 출력
+
+q.pop(); //값 제거 
+
+*복사됨
+queue<int> copy = q;
+so, 다른 주소값 
+cout<<&q<<endl;
+cout<<&copy<<endl; 
+
+while(!q.empty()){
+    cout<<q.front()<<" ";
+    q.pop(); 
+}
+
+//인덱스 접근 X 
+
+///XXX
+for(int i:q){
+    cout<<i<<" ";	
+}
+///XXX
+for(int i = 0 ; i <q.size();i++){
+    cout<<q[i]<<" ";
+}
+
+

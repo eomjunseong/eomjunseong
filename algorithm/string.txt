@@ -1,0 +1,87 @@
+#include <string> 
+namespace std;
+	
+string str ; 
+str = "HI!";
+string str2(str);
+string str3 = str; ---> 다가능 다 다른 주소,
+
+at : 예외 O 느림 
+[] : 예외 x 빠름 
+
+str1.front() //"BlockDMask" -> 'B'
+str1.back()  //"BlockDMask" -> 'K'
+
+str1.size(); ==str1.length()
+
+str1.clear() //size ==0 , capacity 유지 
+
+str1.empty() //bool 
+
+str1.substr() // //"BlockDMask"
+str2=str1.substr(5); // 5부터 끝까지 반환  DMask
+str2=str1.substr(5, 1); //5부터 1개 반환   D
+
+str1.replace(5, 2, str2); //"BlockDMask"  --> kD가 str2로 대체 
+
+str1.compare(str2);  
+// 같으면 0 str2 
+// str1<str2 --> (-) A<B 
+// str1>str2 --> (+) C>B
+
+string str1="abcdefghi";
+char arr[10]; //핵심
+int arrLen = str1.copy(arr, 3, 5);  // 3개 5부텉  
+arr[arrLen] = '\0'; 
+cout<<str1<<endl;
+cout<<arr<<endl; // fgh
+
+string str1="abcdefghi";
+int a = str1.find("de"); //3
+cout<<a<<endl;//3
+cout<<str1[a];//d
+	
+str1.push_back(char c) --> 문자하나만 가능 
+str1.push_back('c') 
+str1.pop_back()
+
+string base = "hello world!"; 
+base.append("appended!");
+base.append(str2,0,4); //->str2의 idx 0부터 4개 q붙임 ;
+
+str1.begin();
+str1.end(); --> sort 가능 
+string str1="abcdefghi";
+sort(str1.begin(),str1.end(),greater<char>());
+reverse(str1.begin(),str1.end());
+
+string str1="abcdefghi";
+string str2 = "www";
+swap(str1,str2);	
+
+string str1="abcdefghi";
+str1+='a'; OK
+str1+="aa"; OK
+
+* 숫자로
+string s  = "1000";
+int a = stoi(s); // 1000;
+
+* 스트링화 ,  문자열로
+int a = 4523;
+string str = to_string(a); // 스트링화 
+cout<<str.size(); //4 
+
+*문자열 --> 숫자로
+char arr[5]="1000";
+int a = stoi(arr); //1000;
+
+* c 문자열화
+str1.c_str() //string 문자열을 C스타일의 문자열로 변경해주는 함수
+char* arr = str1.c_str() 
+// "BlockDMask"가 "BlockDMask\0"
+//const 로만 받아야함 
+
+*(A+B)%C == ((A%C)+(B%C))%C;
+
+

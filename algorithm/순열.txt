@@ -1,0 +1,33 @@
+#include<iostream>
+#include<algorithm>
+#include<stdio.h>
+#include<vector>
+
+using namespace std;
+
+//순열   --> check 
+int n,r;
+int ans[10];
+int check[10];
+void DFS(int L){
+   if(L==r){
+        for(int j = 0 ; j<r; j++){
+           printf("%d ",ans[j]);
+        }
+        printf("\n");
+    }
+    else{
+        for(int i =1 ; i<=n;i++){ //s 가 아닌 0 부터 시작  --> 순서가 있음으로  
+            if(check[i]==0){ //체크 사용  
+               check[i]=1;
+               ans[L] =  i ;
+               DFS(L+1);
+               check[i] = 0 ; 
+            }
+        }      
+    }
+}
+int main(void){
+   scanf("%d%d",&n,&r);
+   DFS(0);
+}
