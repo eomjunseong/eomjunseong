@@ -10,6 +10,11 @@ vector<int> v(5) //0으로 초기화된 5개원소
 vector<int> v(5,2)// 2로 초기화된 5개원소
 vector<int> v2(v1)//v1을 복사 생성 
 
+
+int test_arr[] = { 2, 4, 3, 6, 1, 7 };
+//OK : vector<int> test_vec ( { 2, 4, 3, 6, 1, 7 });
+//NO : vector<int> test_vec (test_arr);
+
 v.size();
 v.empty(); -->true false;
 
@@ -25,6 +30,9 @@ v.pop_back(); //마지막 원소 제거
 vec.insert(vec.begin()+1, 3);; // 2번쨰위치에 3삽입 
 v.insert(vec.begin()+1, 3, 4); // 2번쨰 위치에 3개의 4를 삽입 
 
+//vector 와 다름!! 
+vector : 주소 줘야함
+string : 인덱스 넘버
 v.erase(vec.begin()+2); //3번쨰 삭제;
 vec.erase(vec.begin()+1,vec.begin()+3); // [) 1,2번쨰 삭제; 
 

@@ -1,5 +1,12 @@
-#include <cmath>
-std namespace 안에서 정의됨
+#include <cmath> namespace std  안에서 정의됨
+ceil // 반올림 
+floor// 내림
+floor(N + 0.5);  //반올림 
+
+
+#for문안에서,,,
+for(int i = 0 ; i<s.length();i++) 
+// 이런거 할떄 s.length() 조심해야함 +(안에서 길이가 변할경우 ...) 
 
 #include <algorithm>
         reverse
@@ -26,7 +33,7 @@ toupper
 tolower
 
 
-#pair
+#pair (queue등과의 활용이 아닌 단독 pair-->#include <utility> )
 pair<int, string> p;
 p.first = 1;
 p.second = "choiiis";
@@ -40,10 +47,13 @@ pair<int, string> p2=p1; //OK
 pair<int, string> p2(p1); //OK
 
 
-*이상한 min max 
+*이상한 min max -->고정값을 넘어야함 ...
 #include <string>
 #include <iostream>
 using namespace std;
+
+*(A+B)%C == ((A%C)+(B%C))%C;
+
 
 int main(void) {
 	string s = "abcabcabcabcdededededede";
@@ -55,3 +65,8 @@ int main(void) {
    	 return 0;
 }
 	
+
+#max_element
+#GCD
+#LCM
+#형변환

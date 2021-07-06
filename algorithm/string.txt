@@ -37,7 +37,10 @@ cout<<str1<<endl;
 cout<<arr<<endl; // fgh
 
 string str1="abcdefghi";
-int a = str1.find("de"); //3
+int a = str1.find("de"); //3 //없으면 -1 반환
+없으면 -1 반환!!!!
+
+find("-",n)--> n포함해서 이후로 찾음
 cout<<a<<endl;//3
 cout<<str1[a];//d
 	
@@ -82,6 +85,16 @@ char* arr = str1.c_str()
 // "BlockDMask"가 "BlockDMask\0"
 //const 로만 받아야함 
 
-*(A+B)%C == ((A%C)+(B%C))%C;
+string s = "abcdefghid:123";  
+//vector 와 다름!! 
+vector : 주소 줘야함
+string : 인덱스 넘버
+s.erase(4); // abcd --> 인덱스 4포함 다 날림
+s.erase(4,3); // 인덱스 4부터 3개 지움 //갯수 초과시에도 문제 X 
+s.erase(s.find("f"),1); // f만 지움 --> find가 인덱스값 반환 없으면 -1 
+s.erase(s.find("f")); f포함 뒤로  다 지움 
+
+
+
 
 

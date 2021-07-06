@@ -59,3 +59,19 @@ int main(void)
     ss>>c4;
     cout<<i1<<" "<<c1<<" "<<i2<<" "<<c2<<" "<<i3<<" "<<c3<<" "<<c4<<endl;    
 }
+
+int main(void) {
+	string str1 = "FRANCE";
+    stringstream ss;
+	ss.str(str1);
+   
+    char ch1; 	
+    while(ss>>ch1){
+       cout<<ch1<<endl;
+    }
+    if(ss>>ch1){	
+    	cout<<ch1<<endl;
+	} //출력 X 
+	ss>>ch1;
+	cout<<ch1<<endl;//E 출력  
+}
