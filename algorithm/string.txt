@@ -94,7 +94,7 @@ s.erase(4,3); // 인덱스 4부터 3개 지움 //갯수 초과시에도 문제 X
 s.erase(s.find("f"),1); // f만 지움 --> find가 인덱스값 반환 없으면 -1 
 s.erase(s.find("f")); f포함 뒤로  다 지움 
 
-
-
-
+bool comp(string s1, string s2){ // const string &s1,const string &s2
+    return s1+s2>s2+s1;
+}
 

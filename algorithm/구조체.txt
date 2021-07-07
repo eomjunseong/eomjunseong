@@ -1,0 +1,30 @@
+struct Lec{
+	int pay,day;
+	Lec(int a,int b){
+		pay = a;
+		day = b;
+	}
+    //priority_queue 에 사용시 반드시 생성
+    //sort 사용시 반드시 생성
+	bool operator<(const Lec &x)const{
+		return day>x.day; //내림차순  
+	}
+};
+
+* 선언 
+Lec a(10,20);
+Lec b = a ; // 값만 복사됨  
+
+*꺼내기 (priority_queue)
+Lec temp = pq.top();
+
+struct Lec{
+    int day;
+    int pay
+    Lec(int a , int b){
+        day =a ; pay = b;
+    }
+    bool operator<(const Lec &b)const{
+        return this.day>b.day
+    }
+}
