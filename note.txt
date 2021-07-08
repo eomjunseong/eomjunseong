@@ -42,3 +42,7 @@
 	stl.update
 	프로그래머스lv2(10/47) ==37
 	포즐리 지도 업데이트(+주소입력 창 생성문제 with formview)
+
+0708 -	포즐리 가입 폼 주소 창( daum map api) 
+	포즐리 daum geocoder 좌표 추출 및 naver 지도 반영 OK
+	프로그래머스lv2(14/47) ==33

@@ -17,7 +17,7 @@ size()
 erase(key) // 해당 원소 지움 
 count(key)
 
-(*m.find("a")).second //OK
+(*m.find("a")).second //OK //map 의 find 는 주소를 반환함
 m.find("a")->second //OK
 
 m.erase("e");
