@@ -1,0 +1,10 @@
+int Find(int v){
+   if(v==unf[v]) return v;
+   else return unf[v]=Find(unf[v]);
+}
+
+void Union(int a, int b){
+   a=Find(a);
+   b=Find(b);
+   if(a!=b) unf[a]=b;
+}

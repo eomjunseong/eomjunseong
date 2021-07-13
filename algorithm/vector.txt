@@ -10,6 +10,8 @@ vector<int> v(5) //0으로 초기화된 5개원소
 vector<int> v(5,2)// 2로 초기화된 5개원소
 vector<int> v2(v1)//v1을 복사 생성 
 
+int a[3] ={1,2,3};
+vector<int> v(a,a+sizeof(a)/sizeof(a[0])); //ok == ({1,2,3})
 
 int test_arr[] = { 2, 4, 3, 6, 1, 7 };
 //OK : vector<int> test_vec ( { 2, 4, 3, 6, 1, 7 });
@@ -38,6 +40,8 @@ vec.erase(vec.begin()+1,vec.begin()+3); // [) 1,2번쨰 삭제;
 
 //정렬후 사용 --> 중복 제거 
 unique(v.begin(), v.end());
+v.erase(  unique(v.begin(),v.end())  ,  v.end()  );
+
 
 //vector<string > --> sort 정렬시 --> 길이 X 사전순
 //sort(vec.begin(),vec.end(),greater<string>());가능

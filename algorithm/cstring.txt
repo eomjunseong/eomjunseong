@@ -1,0 +1,2 @@
+int arr[10][11];
+memset(arr,0,size0f(arr))//--> all 0으로 초기화 

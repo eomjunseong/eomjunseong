@@ -1,8 +1,22 @@
-#max_element
 #GCD
+
+int gcd(int a,int b){
+    int temp;
+    while(b>0){
+        temp= a%b;
+        a= b;
+        b= temp;
+    }
+    return a; 
+}
 #LCM
+return a*b/gcd(a,b);
+
+#max_element
 #형변환
 #unorder_map
 #set
 #hash_map
 #vector<vector<>>
+#string erase()
+#string //substr

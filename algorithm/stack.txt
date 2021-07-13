@@ -8,7 +8,7 @@ s.push(2);
 s.push(3);
 
 s.top(); //가장 상단 반환
-s.pop(); //삭제
+s.q(); //삭제
 
 s.size();//bool
 s.empty();
@@ -23,3 +23,4 @@ while(!s.empty()){
 }
 
 //인덱스 접근 X 
+

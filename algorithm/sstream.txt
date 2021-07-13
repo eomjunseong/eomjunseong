@@ -28,6 +28,10 @@ ss>>nickname; .....
 #include <iostream>
 using namespace std;
 
+//unget --> 문제발생 잘못된 정리 확신 
+
+//int temp 는 "-1 ..." 일떄 음수처리까지 해서 받음 
+
 int main(void) 
 {
     string dartResult = "1T2D3D#";

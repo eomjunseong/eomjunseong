@@ -18,6 +18,7 @@ str1.clear() //size ==0 , capacity 유지
 
 str1.empty() //bool 
 
+//substr 도려내서 반환 느낌 (인덱스 부터~~)
 str1.substr() // //"BlockDMask"
 str2=str1.substr(5); // 5부터 끝까지 반환  DMask
 str2=str1.substr(5, 1); //5부터 1개 반환   D

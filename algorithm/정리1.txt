@@ -29,7 +29,7 @@ for(int i=0; i<n; i++)
 --> 지도 문제
 
 #include <cctype> //C++ --> 근데 없어도 작동하는듯...
-toupper
+toupper // 문자 만 바꾸고 아닌건 그대로 리턴.... error X
 tolower
 
 
@@ -66,7 +66,6 @@ int main(void) {
 }
 	
 
-#max_element
-#GCD
-#LCM
-#형변환
+//주식문제 
+
+stack에다 값이 아닌 인덱스 쌓기
