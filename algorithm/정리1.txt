@@ -52,7 +52,7 @@ pair<int, string> p2(p1); //OK
 #include <iostream>
 using namespace std;
 
-*(A+B)%C == ((A%C)+(B%C))%C;
+*(A+B)%C == ( (A%C)+(B%C) ) %C;
 
 
 int main(void) {
