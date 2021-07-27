@@ -35,7 +35,8 @@ v.insert(vec.begin()+1, 3, 4); // 2번쨰 위치에 3개의 4를 삽입
 //vector 와 다름!! 
 vector : 주소 줘야함
 string : 인덱스 넘버
-v.erase(vec.begin()+2); //3번쨰 삭제;
+//주소를 처 넣어야함 인덱스 번호가 아니라 
+v.erase(vec.begin()+2); //3번쨰 한개 삭제;
 vec.erase(vec.begin()+1,vec.begin()+3); // [) 1,2번쨰 삭제; 
 
 //정렬후 사용 --> 중복 제거 

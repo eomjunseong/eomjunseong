@@ -4,6 +4,10 @@ floor// 내림
 floor(N + 0.5);  //반올림 
 
 
+	cin.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+
 #for문안에서,,,
 for(int i = 0 ; i<s.length();i++) 
 // 이런거 할떄 s.length() 조심해야함 +(안에서 길이가 변할경우 ...) 

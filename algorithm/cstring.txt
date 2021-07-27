@@ -1,2 +1,10 @@
-int arr[10][11];
-memset(arr,0,size0f(arr))//--> all 0으로 초기화 
+include<cstring>
+
+int arr[10][11]={1,2,3,4,1,2,2,3};
+memset(arr,0,sizeof(arr))//--> all 0으로 초기화 
+
+int dest[10][11];
+memcpy(dest,arr,sizeof(arr));
+
+char* 일때 사용 유의 
+
