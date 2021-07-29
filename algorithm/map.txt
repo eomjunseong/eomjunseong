@@ -5,23 +5,37 @@
 따라서 트리에 n개의 원소가 있을 때 O(log n)의 시간 복잡도로 삽입, 삭제, 검색을 할 수 있다.
 * (문자열의 경우는 예외)
 
+map<int, int, greater<int>> m1; 가능 
 map<key, value>
-
+map<int> m2(m1); //복사 생성
 begin()
 end()
-
-clear()
-insert( make_pair(key,value) ); //원소추가
-find(key)  //key(키값)에 해당하는 iterator를 반환
 size()
 erase(key) // 해당 원소 지움 
 count(key)
+clear()
 
+
+//원소추가
+insert( make_pair(key,value) ); OK
+insert(pair<int, int>(10, 20)); OK
+int( {    ,   }  ); OK
+
+
+## find는 주소를 반환함 앵간하면 그냥 쓰지말자 있는거 확실할때만 
+주소를 파라미터로 쓰는 곳에서만 쓰자
+
+find(key)  //key(키값)에 해당하는 iterator를 반환
 (*m.find("a")).second //OK //map 의 find 는 주소를 반환함
 m.find("a")->second //OK
 
-m.erase("e");
-m.erase(m.find("f")); // also possible
+
+####지우기전에 있나 확인하고 지우기
+if(m.count("a")==1){
+    m.erase("a");
+    m.erase(m.find("f")); // also possible--> 근데 없는거 지우면 렉처먹음
+}
+m.erase("e"); // 없는거 지우면 없는대로 지우고 넘어가긴함. 
 	
 map<int, int> ma;
 ma.insert(make_pair(1, 3));  // key 값 : 1 , value : 3
@@ -38,3 +52,16 @@ cout<< ma[5]<<endl; --> value 값 출력
 for(auto it = m.begin(); it != m.end(); it++){
     cout << "key: " << it->first << " " << "value: " << it->second << '\n';
 }
+
+for(auto tmp : m1){
+    cout<<   tmp.first<<"   "<<tmp.second<<endl; OK 
+}
+
+
+
+
+EXCEPT:
+
+없는값 333
+cout<<m1[333]; --> 출력 0 생각하긔 
+--> 이것도 KEY 가 0인경우임 ..string이면 렉처먹을수도 . 아무것도 안뜨긴함
