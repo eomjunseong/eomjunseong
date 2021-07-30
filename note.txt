@@ -113,3 +113,26 @@
 	포즐리 - 502error
 	백준 BFS 5(17/50)
 	백준 DFS 3(28/50)
+
+0728 -	ncs 에듀윌01의사소통능력
+	백준 BFS 3(20/50)	 	
+	알고리즘 공부방향 개선	
+	aws s3, postgresql 연결 성공 
+
+0729 - 	ncs 에듀윌02문제해결능력 
+	백준 utube 추천 문제 1717 집합의 표현,	10814 나이순정렬,	3584 가장 가까운 조상	5568 카드놓기
+	c++ STL <map>
+	포즐리 supersu.py 및 , create_superuser 오버라이딩 완료 
+	포즐리 nginx 용량 수정
+	포즐리 네이버 카카오 api 연결 
+	포즐리 이미지 scale, rotate 기능 수정 
+
+0730 -	ncs 에듀윌03수리능력
+	백준 utube 추천 문제 1593 문자해독
+	프로그래머스 oracle (3/6)
+	C++ STL string vector sort next_permutations,prev_permutaions 등 공부
+
+0731 - 	ncs 에듀윌04정보능력
+	
+0801 -	직무상식평가
+0802

@@ -1,3 +1,5 @@
+--> 큐 특 :  인덱스 진입 X 트리 생각
+
 priority_queue<T, Container, Compare>
 
 *default//내림차순 
@@ -9,6 +11,9 @@ priority_queue<int,vector<int>,greater<int> > temp;
 
 push(element)
 pop()
-top()
+
+top()!!! 
+XXXXX front() XXXX
+
 empty()
 size()

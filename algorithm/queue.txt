@@ -1,4 +1,6 @@
-#include <queue>
+#include <queue> 인덱스 접근 X 
+--> sort(q.begin(),q.end()) XXXX --> 에초에 begin(),end() 존재 XXXXXX
+
 
 *BFS에 사용
 //queue<int> q2({ 1, 2, 3, 4, 5 }); OK
@@ -13,6 +15,8 @@ q.push(3);
 
 q.size();      // queue의 크기 출력
 q.empty();     // queue가 비어있는지 check (비어있다면 true)
+
+XXXXXXXXXXXXq.top();XXXXXXXXXXX --> priority_queue 일때 쓰는거임
 
 q.front();     // queue의 가장 첫번째 원소 출력
 q.back();      // queue의 가장 마지막 원소 출력

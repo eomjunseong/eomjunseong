@@ -17,22 +17,38 @@ str1.size(); ==str1.length()
 str1.clear() //size ==0 , capacity 유지 
 
 str1.empty() //bool 
+string str1=""; ==> true
+string str2;    ==> true
 
-//substr 도려내서 반환 느낌 (인덱스 부터~~)
+//substr 도려내서 반환 느낌 (해당 인덱스부터)
 str1.substr() // //"BlockDMask"
-str2=str1.substr(5); // 5부터 끝까지 반환  DMask
-str2=str1.substr(5, 1); //5부터 1개 반환   D
+str2=str1.substr(5);   -->index 5부터 끝까지 반환
+str2=str1.substr(5,1); -->index 5부터 1개 반환   
+str2=str1.substr(5,4); -->index 5부터 4개 반환
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    string str = "BlockMask";
+    string a = str.substr(str.begin(),str.begin()+3);
+    cout<<a;
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 
 str1.replace(5, 2, str2); //"BlockDMask"  --> kD가 str2로 대체 
 
 str1.compare(str2);  
 // 같으면 0 str2 
-// str1<str2 --> (-) A<B 
+// str1<str2 --> (-) A<B            앞<뒤 --> -1 ,,,,,, 앞>뒤 --->1,,,,,,,,,, 같 0
 // str1>str2 --> (+) C>B
 
-string str1="abcdefghi";
+string s1 = "asd";
+string s2 = "asd";
+if(s1==s2){ //길이X ㄹㅇ 같은지
+    cout<<"asd";
+} OK
+
+
+string str1="abcdefghi"; // 길이 : 9
 char arr[10]; //핵심
-int arrLen = str1.copy(arr, 3, 5);  // 3개 5부텉  
+int arrLen = str1.copy(arr, 3, 5);  // 3개 인덱스 5부터.....  
 arr[arrLen] = '\0'; 
 cout<<str1<<endl;
 cout<<arr<<endl; // fgh
@@ -41,9 +57,7 @@ string str1="abcdefghi";
 int a = str1.find("de"); //3 //없으면 -1 반환
 없으면 -1 반환!!!!
 
-find("-",n)--> n포함해서 이후로 찾음
-cout<<a<<endl;//3
-cout<<str1[a];//d
+find("-",n)--> index n포함해서 찾음!!! --> 없으면 -1 반환
 	
 str1.push_back(char c) --> 문자하나만 가능 
 str1.push_back('c') 
@@ -58,10 +72,17 @@ str1.end(); --> sort 가능
 string str1="abcdefghi";
 sort(str1.begin(),str1.end(),greater<char>());
 reverse(str1.begin(),str1.end());
+//정렬하고 사용
+s1.erase(    unique(   s1.begin()  ,s1.end()   ),   s1.end());
 
 string str1="abcdefghi";
 string str2 = "www";
 swap(str1,str2);	
+//동일
+s=str2;
+str2 = str1;
+str1 = s;
+
 
 string str1="abcdefghi";
 str1+='a'; OK
@@ -69,7 +90,7 @@ str1+="aa"; OK
 
 * 숫자로
 string s  = "1000";
-int a = stoi(s); // 1000;
+int a = stoi(s); // 1000;  string TO int 
 
 * 스트링화 ,  문자열로
 int a = 4523;
@@ -82,7 +103,7 @@ int a = stoi(arr); //1000;
 
 * c 문자열화
 str1.c_str() //string 문자열을 C스타일의 문자열로 변경해주는 함수
-char* arr = str1.c_str() 
+const char* arr = str1.c_str() 
 // "BlockDMask"가 "BlockDMask\0"
 //const 로만 받아야함 
 
@@ -90,8 +111,8 @@ string s = "abcdefghid:123";
 //vector 와 다름!! 
 vector : 주소 줘야함
 string : 인덱스 넘버
-s.erase(4); // abcd --> 인덱스 4포함 다 날림
-s.erase(4,3); // 인덱스 4부터 3개 지움 //갯수 초과시에도 문제 X 
+s.erase(4); // abcd --> 인덱스 4포함 다 날림 -->vector.erase(주소)--> INDEX XXX && 하나
+s.erase(4,3); // 인덱스 4부터 3개 지움 //갯수 초과시에도 문제 X 이긴한데 확인해봐야함 사용 X  
 s.erase(s.find("f"),1); // f만 지움 --> find가 인덱스값 반환 없으면 -1 
 s.erase(s.find("f")); f포함 뒤로  다 지움 
 

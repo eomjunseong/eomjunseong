@@ -27,4 +27,13 @@ struct Lec{
     bool operator<(const Lec &b)const{
         return this.day>b.day
     }
+    //차이가...
+    bool operator<(Lec &b){
+        return this.day>b.day
+    }
+
+    //==비교
+    bool operator==(Lec &x){
+		return day==x.day&&pay==x.pay;
+	}
 }
