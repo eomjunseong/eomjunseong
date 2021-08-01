@@ -1,0 +1,102 @@
+--self join
+select * 
+from emp a ,emp b
+where a.mgr = b.empno and a.ename='SMITH';
+
+select *
+from emp a,emp b 
+where a.mgr = b.empno and a.ename = 'FORD';
+
+--smith 사원의 상관과 동일한 직무를 가지고 있는 
+
+select a3.empno,a3.ename,a3.job
+from emp a1,emp a2,emp a3
+where a1.mgr = a2.empno and a2.job = a3.job and a1.ename ='SMITH';
+
+select * from emp;
+
+--각 사원 상관 이름 갖고옴 없어도 가져옴 
+select  a1.ename,a2.ename
+from emp a1,emp a2 
+where a1.mgr = a2.empno(+) ;
+
+
+--없는 쪽 +
+select * from dept;
+select distinct deptno from emp;
+--해보면 deptno 40 없음을 알  수 있음.
+
+select a2.dname, a1.empno, a1.ename,a1.sal,a1.deptno
+from emp a1, dept a2
+where a1.deptno(+) = a2.deptno ;
+
+
+
+########################################################################
+
+--서브쿼리 --> 조인으로도 가능
+select dname
+from  dept
+where deptno = (select deptno  
+                from emp
+                where ename='WARD') ;
+--위아래 같음 
+select a2.dname
+from emp a1, dept a2
+where a1.deptno = a2.deptno and a1.ename = 'WARD';
+
+
+
+select *
+from emp a, dept b
+where a.deptno = b. deptno and a.deptno = (select deptno
+                                            from emp 
+                                            where ename = 'SMITH');
+
+select  empno,ename,job
+from emp 
+where job = (select job from emp where ename = 'MARTIN');
+
+
+select a.empno, a.ename,b.ename
+from emp a, emp b 
+where a.mgr =(select mgr from emp where ename = 'ALLEN')  and a.mgr= b.empno;
+
+
+select a.empno,a.ename,a.deptno
+from emp a  
+where a.deptno = (select deptno
+                  from emp 
+                   where ename ='WARD');
+
+select empno,ename,job,sal
+from emp 
+where sal>(select avg(sal)
+            from emp 
+            where job='SALESMAN'
+            );
+    
+select avg(sal)
+from  emp
+where  deptno = (select deptno 
+                from dept
+                where loc ='DALLAS');
+             
+select emp.empno,emp.ename,dept.loc
+from emp , dept 
+where emp.deptno = dept.deptno and emp.deptno = (select deptno from dept where dname ='SALES');
+              
+
+select a1.empno,a1.ename,a1.job
+from emp a1, dept a2
+where a1.mgr = (select empno
+                from emp
+                where ename = 'BLAKE') and a1.deptno = a2.deptno 
+                and a2.deptno =( select  deptno
+                                from dept 
+                                where loc='CHICAGO');
+--> 이거 조인할 필요 없게끔 정리좀 
+
+
+
+

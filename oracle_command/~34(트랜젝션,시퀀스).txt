@@ -1,0 +1,40 @@
+--트랜젝션 : 최종결과를 내기까지 위한 하나의 작업 단위.
+--insert update delete 문 -> 메모리상에서만 수행. 디스크 반영X
+--반영 전까지의 작업단위를 트랜젝션이라고 함. 
+--commit : 디스크 반영/ 복구불가
+--rollback : 트랜재션 취소
+--savepoint : rollback의 단위를 지정  
+
+--savepoint p1;
+--rollback
+--rollback to p1;
+
+--primary key : 널X 중복X --> 정하기 어려운 경우 sequence 조짐
+
+drop table t1;
+
+create table t1(
+idx number constraint t1_idx_pk primary key,
+number_data number not null
+);
+
+-- 이경우 처음 가져오면 1임 . increment 해서 갖고옴. minavalue  셋팅안하면 기본 1 이라 
+--start with가 minvalue 보다 작은 문제됨 그래서 0 해준거임
+create SEQUENCE test_seq1
+start WITH 0 
+INCREMENT by 1
+minvalue 0;
+
+select test_seq1.currval from dual;
+
+insert into t1 values(test_seq1.nextval,100);
+insert into t1 values(test_seq1.nextval,200);
+
+select * from t1;
+delete t1;
+select test_seq1.currval from dual;
+
+drop SEQUENCE test_seq1;
+
+     
+

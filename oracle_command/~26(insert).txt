@@ -1,0 +1,101 @@
+drop table emp01;
+
+create table emp01
+as 
+select * from emp;
+
+--부서 번호를 사십번으로 변경
+update emp01 set deptno = 40;
+
+--사원들의 입사일 변경
+update emp01 set hiredate = sysdate;
+
+--직무를 변경
+update emp01 set job='개발자';
+
+
+drop table emp01;
+create table emp01 
+as 
+select * from emp;
+
+update emp01 
+set deptno = 40 , hiredate = sysdate, job = '개발자';
+
+drop table emp01;
+create table emp01 
+as 
+select * from emp;
+
+--조건절 update 
+update emp01
+set deptno = 40
+where deptno = 10;
+
+update emp01
+set comm=2000,hiredate=sysdate
+where job='SALESMAN';
+
+--()안에 바로 avg 못쓰노 
+update emp01
+set sal = sal*1.5
+where sal<(select avg(sal) from emp);
+
+update emp01
+set job='developer'
+where job = 'MANAGER';
+
+update emp01
+set sal= (select trunc(avg(sal)) from emp)
+where deptno = 30;
+
+update emp01
+set deptno = (select deptno 
+              from dept 
+              where loc='DALLAS')
+where ename IN (select ename
+               from emp 
+               where mgr=(select empno 
+                          from emp 
+                          where ename='BLAKE'));
+--위아래 같다
+update emp01
+set deptno = (select deptno 
+              from dept 
+              where loc='DALLAS')
+where mgr = (select empno 
+             from emp 
+             where ename='BLAKE');
+
+update emp01
+set mgr =(select empno from emp where ename='KING'), sal = (select max(sal) from emp) 
+where deptno = 20;
+
+drop table emp01;
+create table emp01
+as 
+select * from emp;
+
+update emp01
+set sal = (select max(sal)
+             from emp  
+             where deptno = 20), 
+    job =(select job 
+            from emp 
+            where sal = (select max(sal)
+                         from emp 
+                         where deptno = 20))
+where job = 'CLERK';
+--위아래 같음 
+update emp01
+set (job,sal) = (select job,sal from emp01 where sal=(select max(sal) from emp01 where deptno = 20))
+where job='CLERK';
+
+select job,sal from emp01 where sal=(select max(sal) from emp01  where deptno = 20);
+
+select * from emp01 order by deptno;
+
+
+
+
+

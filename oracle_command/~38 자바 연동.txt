@@ -1,0 +1,88 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class MainClass {
+	
+	static final String driver="oracle.jdbc.OracleDriver";
+	static final String url ="jdbc:oracle:thin:@localhost:1521:XE";
+	static final String id = "scott";
+	static final String pass = "1234";
+	
+	
+	public static void main(String[] args) {
+		try {
+			getData();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void addData() throws Exception{
+		//JDBC 드라이버 로딩
+		Class.forName(driver);
+		//접속
+		Connection db = DriverManager.getConnection(url,id,pass);
+		
+		//쿼리문
+		String sql ="insert into t1(idx,num,str) values (test_seq.nextval,?,?)";
+		PreparedStatement pstmt = db.prepareStatement(sql);
+		
+		pstmt.setInt(1, 100);
+		pstmt.setString(2, "문자열1");
+		pstmt.execute();
+		
+		pstmt.setInt(1, 200);
+		pstmt.setString(2, "문자열12");
+		pstmt.execute();
+		
+		db.close();
+		System.out.println("완료");
+		
+	}
+	public static void getData() throws Exception{
+		//JDBC 드라이버 로딩
+		Class.forName(driver);
+		//접속
+		Connection db = DriverManager.getConnection(url,id,pass);
+		
+		String sql = "select * from t1";
+		Statement stmt = db.createStatement();
+		ResultSet set = stmt.executeQuery(sql);
+		
+		while(set.next()) {
+			int idx=set.getInt("idx");
+			int num=set.getInt("num");
+			String a = set.getString("str");
+			
+			System.out.println( idx +"  " + num+ "  " +a);
+			
+		}
+		db.close();
+	}
+
+}
+
+/*
+drop table t1;
+
+create table t1(
+idx number constraint t1_pk primary key,
+num number not null,
+str varchar(100) not null
+);
+
+drop SEQUENCE test_seq;
+
+create sequence  
+start with 0
+increment by 1
+minvalue 0 ;
+
+select * from t1;
+
+ 
+
+*/

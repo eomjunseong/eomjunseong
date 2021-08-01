@@ -1,0 +1,54 @@
+--view : 뷰를 만들때 사용한 쿼리문을 저장하는것. 테이블 만들기 X. 쿼리문이 동작 O
+--일반 계정 view 생성 불가능  
+-- system 로그인후 
+--grant create view to SCOTT;
+drop view emp_dept_view;
+
+create view emp_dept_view
+as
+select a.empno,a.ename,a.sal,b.dname,b.loc
+from emp a, dept b
+where a.deptno = b.deptno ;
+
+select * from emp_dept_view;
+
+drop table emp100;
+create table emp100
+as 
+select * from emp;
+
+create table dept100
+as
+select * from dept;
+drop view emp100_dept100_view1;
+create view emp100_dept100_view1
+as
+select a.empno,a.ename,a.sal,b.dname,b.loc
+from emp100 a, dept100 b
+where a.deptno=b.deptno;
+
+
+insert into emp100(empno,ename,sal,deptno) 
+values(5000,'홍',2000,10);
+select * from emp100;
+select * from dept100;
+
+select * from emp100,dept100 where emp100.deptno=dept100.deptno;
+
+select * from emp100_dept100_view1;
+
+--view 를 통한 insert (table 조인인 경우 불가능. 아래 에러)
+insert into  emp100_dept100_view1(empno,ename,sal)
+values (6000,'김길동',2000);
+
+drop view emp200_view;
+
+create view emp200_view
+as
+select empno,ename,sal
+from emp100;
+--table 하나를 통한 view 는 insert. update, delete 가능
+insert into emp200_view 
+values(7000,'qkr',3000);
+
+select * from emp200_view;

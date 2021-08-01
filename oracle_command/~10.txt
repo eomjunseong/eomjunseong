@@ -1,0 +1,78 @@
+--논리 연산자: 여러 조건식을 묶어 하나의 조건식으로 만듬
+select empno,ename,deptno,job
+from emp
+where deptno=10 and job='MANAGER';
+
+select empno,ename,sal,hiredate
+from emp
+where sal>=1500 and hiredate>='1981/01/01' and hiredate<='1981/12/31';
+
+select empno,ename,sal,hiredate
+from emp
+where sal>=1500 and hiredate between '1981/01/01' and '1981/12/31';
+
+select empno,ename,deptno,sal
+from emp
+where deptno=20 and sal>=1500;
+
+select empno,ename,job,mgr
+from emp 
+where mgr=7698 and job='CLERK'; 
+
+select empno,ename,sal
+from emp 
+where sal>2000 or sal<1000;
+--위 아래 같음
+select empno,ename,sal
+from emp 
+where not(sal<=2000 and sal>=1000);
+--위 아래 같음 
+select empno,ename,sal
+from emp 
+where not (sal between 1000 and 2000);
+
+select empno,ename,deptno
+from emp
+where deptno=20 or deptno = 30 ;
+
+select empno,ename,job
+from emp
+where job='CLERK' or job='SALESMAN' or job='ANALYST' ; 
+--위 아래 같음 
+select empno,ename,job
+from emp
+where job IN ('CLERK','SALESMAN','ANALYST');
+
+select empno,ename
+from emp 
+where empno <>7499 and  empno <>7566 and empno <>7839; 
+--위아래 같음
+select empno,ename
+from emp 
+where not(empno=7499 or empno=7566 or empno=7839);
+--위아래 같음 
+select empno,ename
+from emp
+where NOT (empno IN(7499,7566,7839));
+
+--LIKE
+select ename,empno
+from emp  
+where ename like 'F%';
+
+select ename,empno
+from emp 
+where ename like '%S';
+
+select ename,empno
+from emp
+where ename like '%A%';
+
+select ename,empno
+from emp 
+where ename like '_A%';
+
+--네글자이름 
+select ename,empno
+from emp
+where ename  like '____';

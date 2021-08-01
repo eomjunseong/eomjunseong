@@ -1,0 +1,61 @@
+--조인
+select *
+from emp,dept;
+
+select *
+from emp,dept
+where emp.deptno = dept.deptno;
+
+select *
+from emp a, dept b
+where a.deptno= b.deptno;
+
+select a.empno,a.ename,b.dname
+from emp a, dept b 
+where a.deptno = b.deptno;
+
+select emp.empno, emp.ename, dept.loc
+from emp, dept
+where emp.deptno = dept.deptno;
+
+select * from dept;
+
+select emp.deptno, emp.ename, dept.loc
+from emp,dept
+where emp.deptno = dept.deptno and dept.loc= 'DALLAS';
+
+select avg(sal)
+from emp a,dept b
+where a.deptno = b.deptno and b.dname = 'SALES';
+
+select a.empno,a.ename,b.loc,a.job
+from emp a,dept b
+where a.deptno=b.deptno and a.hiredate between '1982/01/01' and '1982/12/31';
+
+select * from salgrade;
+
+select a.empno, a.ename, a.sal, b.grade
+from emp a, salgrade b
+where  a.sal between b.losal and b.hisal;
+
+select * from dept;
+
+select emp.empno, emp.ename, a.grade,dept.dname
+from  emp,salgrade a ,dept
+where emp.deptno = dept.deptno and emp.sal between a.losal and a.hisal 
+        and dept.dname='SALES';
+
+select b.grade,count(*),max(sal),min(sal)
+from emp a,salgrade b
+where a.sal between b.losal and b.hisal 
+group by b.grade
+order by b.grade;
+
+select a.ename,a.empno,b.dname,b.loc
+from emp a, dept b, salgrade c 
+where a.deptno = b.deptno and a.sal between c.losal and c.hisal
+        and c.grade = 4; 
+
+        
+        
+

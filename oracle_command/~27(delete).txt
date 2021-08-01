@@ -1,0 +1,22 @@
+drop table emp01;
+
+create table emp01
+as 
+select * from emp;
+
+--다 날림
+delete from emp01;
+
+insert into emp01
+select * from emp;
+
+delete from emp01
+where empno=7782;
+
+delete from emp01
+where sal<=(select avg(sal) from emp);
+
+delete from emp01
+where comm is null;
+
+select * from emp01;

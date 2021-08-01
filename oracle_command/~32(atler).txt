@@ -1,0 +1,123 @@
+drop table test_table20;
+
+create table test_table20(
+data1 number,
+data2 number,
+data3 number,
+data4 number,
+data5 number,
+data6 number
+);
+
+--null제약 조건 추가 
+--다른 것과 달리 컬럼을 수정하는 거으로 해야함 
+alter table test_table20
+modify data1 not null;
+
+alter table test_table20
+modify data1  null;
+
+insert into test_table20(data1)
+values(null);
+
+--primary key 추가 
+alter table test_table20
+add constraint TEST_TABLE20_DATA2_PK primary key(data2);
+
+insert into test_table20(data1,data2)
+values(1,10);
+
+--FK 추가
+alter table test_table20
+add constraint test_table20_data3_fk FOREIGN key(data3) references emp(empno);
+insert into test_table20(data1,data2,data3)
+values(1,11,7782);
+
+--unique 추가
+alter table test_table20
+add constraint  test_table2_data4_uk unique(data4);
+
+insert into test_table20(data1,data2,data4)
+values(1,22,100);
+--에러 unique 라 중복 X 
+insert into test_table20(data1,data2,data4)
+values(1,42,100);
+--가능
+insert into test_table20(data1,data2,data4)
+values(1,32,null);
+
+--check 
+alter table test_table20 
+add constraint test_table20_data33_ck check(data5 between  1 and 5);
+insert into test_table20(data1,data2,data5)
+values(15,104,5);
+--IN check
+alter table test_table20 
+add constraint test_table20_data_ck check (data6 IN (1,5));
+
+insert into test_table20(data1,data2,data6) values (17,107,5);
+
+drop table t30;
+
+--제약 조건 변경할라면 제약조건이름이 반드시 필요함
+create table t30(
+data1 number not null,
+data2 number constraint t30_data2_PK primary key,
+date3 number constraint t30_data3_fk references emp(empno),
+data4 number constraint t30_data4_uk unique,
+data5 number constraint t30_data5_ck check (data5 between 1 and 10),
+data6 number constraint t30_data6_ck check (data6 In (10,20,30))
+);
+--not nul 제거 -- 수정개념임
+alter table t30
+modify data1 null;
+insert into t30(data1,data2) values (null,100);
+
+--primary key 제약 조건제거 
+alter table t30
+drop constraint t30_data2_PK;
+insert into t30(data1,data2) values (null,null);
+
+--외래키 제약조건 제거 
+alter table t30
+drop constraint t30_data3_fk;
+insert into t30(data1,data2,date3) values (null,null,100);
+
+--unique 제거
+alter table t30
+drop constraint t30_data4_UK;
+insert into t30(data1,data2,date3,data4) values (null,null,100,22);
+insert into t30(data1,data2,date3,data4) values (null,null,100,22);
+
+--체크 제약조건 제거
+alter table t30
+drop constraint t30_data5_ck;
+
+alter table t30
+drop constraint t30_data6_ck;
+
+insert into t30 values(null,null,100,22,1000,1000);
+
+--제약 조건 활성화 비활성화 . 비활성에서 -> 활성화 할때 기존의 데이터 검사해서 위배하면 안됨
+
+create table t40(
+data1 number constraint PK_t40 primary key);
+
+insert into t40 values(100);
+insert into t40 values(200);
+
+alter table t40
+disable constraint PK_t40;
+
+insert into t40 values(200);
+select * from t40;
+
+delete t40;
+
+alter table t40
+enable constraint PK_t40;
+
+
+
+select * from test_table20;
+select * from emp;

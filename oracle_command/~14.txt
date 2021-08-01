@@ -1,0 +1,98 @@
+--절대값 구하기 
+select -10,abs(-10) from dual;
+
+select sal,sal-2000,abs(sal-2000) from emp;
+
+--소수이하 버림
+select 12.789,floor(12.789) from dual;
+
+select sal,sal*0.85,floor(sal*0.85)
+from emp
+where sal>=1500;
+
+--반올림
+select 12.789,round(12.789) from dual;
+select round(12.789,2),round(888.888,-2) from dual;
+
+select sal,sal*1.2,round(sal*1.2,-2)
+from emp 
+where sal<=2000;
+
+--버림 자리수를 정할 수 있음 
+select 111.9999, trunc(111.9999),trunc(111.9999,2),trunc(111.9999,-2) from dual;
+
+select sal,trunc(sal,-2)
+from emp;
+
+--나머지 구하기 --> 오라클은 함수로 제공
+select mod(40,3) , mod (10,4) from dual;
+
+
+
+--대문자를 소문자로 
+select 'ABCDed',lower('ABCDed') from dual;
+
+select ename,lower(ename)
+from emp;
+
+--소문자를 대문자로
+select 'abcdeF', upper('abcdeF') from dual;
+
+select upper(lower(ename))
+from emp ;
+
+--첫글자만 대문자 
+select 'abcdEF', initcap('abcdEF') from dual;
+
+select ename,initcap(ename) from emp;
+
+--문자열 연결 
+select concat('abc','EDF'),concat('AAA',concat('abc','EDF'))
+from dual;
+
+select '사원의 이름은 '||ename||' 이고, 직무는 '||job||' 입니다'
+from emp;
+
+select concat(concat(concat(concat(concat('사원의 이름은 ',ename),' 이고, '),'직무는'),job),' 입니다')
+from emp ;
+
+--문자열의 길이 b 는 바이트 
+select length('abcde'),lengthb('abcd') from dual;
+
+select length('안녕하세요'), lengthb('안녕하세요') from dual;
+
+--문자열 잘라내기 b 바이트 
+select substr('abcd',3), substrb('abcd',3) from dual;
+--한글 2 byte
+select substr('안녕하세요',3), substrb('안녕하세요',3) from dual;
+
+select substr('abcdefghi',3,4) , substr('동해물과 백두산이',3,4)from dual;
+se
+--문자열 찾기--> ,3 세번째 글자부터 검사-->,3,2 (3번째 문자부터 2번째 'ab' 찾기)
+select instr('abcdabcdabcdabcd','ab'),instr('abcdabcdabcdabcd','ab',3)
+    ,instr('abcdabcdabcdabcd','ab',3,2)
+from dual;
+
+-- 0
+select instr('abcdefgr','aaa') from dual;
+
+select ename 
+from emp 
+where ename like '_A%';
+--위아래 다른거임 
+-- 아래는 두번째 '이후' A 
+select ename
+from emp 
+where instr(ename,'A')>1;
+
+--특정 문자열로 채우기 
+select '문자열',lpad('문자열',20),rpad('문자열',20), 
+    lpad('문자열',20,'_'),rpad('문자열',7,'_')
+from dual;
+
+select '         문자열           ',ltrim('         문자열           '), 
+        rtrim('         문자열           '),trim('         문자열           ')
+from dual;
+
+--문자열 변경
+select 'abcdefg',replace('abcdefg','bc','lllll') from dual;

@@ -1,0 +1,64 @@
+select sal,sal+100,sal*2,sal/2,sal-200
+from emp;
+
+--comm 하면 null 인거 때문에 문제가 생김//데베는 널을 무한대로 정의
+select  sal,comm,sal+comm
+from emp;
+
+--해결
+select sal,comm,sal+nvl(comm,0)
+from emp;
+
+/*
+데베에서 쌍따움표 따움표 다 문자열
+*/
+
+--concat 연산자 문자열을 합치는 연산자 
+select ename,job
+from emp;
+--양식 더하기
+select ename||' 사원의 담당 직무는 '||job||' 입니다.'  -->(쌍따 안됨X)
+from emp;
+
+--Distinct  중복된 로우 제거 
+select DISTINCT deptno
+from emp;
+
+--비교용
+select deptno
+from emp;
+
+
+
+--조건절 
+select empno,ename,deptno
+from emp
+where deptno=10;
+
+select empno,ename,deptno
+from emp
+where deptno!=10; 
+--where deptno <>10;
+
+select empno,ename,sal
+from emp
+where sal>=1500;
+
+--스트링 대문자로 써야함
+select empno,ename,job,sal
+from emp
+where ename = 'KING';
+
+select empno,ename,job
+from emp
+where job='SALESMAN';
+
+select empno,ename,job
+from emp
+where job <> 'CLERK';
+--where job != 'CLERK';
+
+select empno,ename,hiredate
+from emp
+where hiredate >='1982/01/01' ;
+

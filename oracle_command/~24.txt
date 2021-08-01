@@ -1,0 +1,145 @@
+--3000이상 받는 사원들 부서와 같은 부서 사람들
+--IN : 하나만 만족해도 OK
+select empno,ename,job,sal,deptno
+from emp 
+where deptno IN (select DISTINCT deptno 
+                 from emp 
+                 where sal>=3000)
+order by deptno;
+
+--직무가 clerk 인 사원과 동일부서에 근무하는 사람들 
+select empno,ename,deptno,hiredate
+from emp 
+where deptno IN(select deptno
+                from emp 
+                where job='CLERK')
+order by deptno;
+
+--KING을 상관으로 가진 사원들
+
+
+select emp.empno,emp.ename, dept.dname,dept.loc 
+from emp , dept
+where emp.deptno = dept.deptno and emp.mgr = (select empno 
+                                              from emp 
+                                              where ename ='KING');
+--위아래 사실상 같음
+select dname,loc
+from dept 
+where deptno in (select deptno 
+                 from emp 
+                 where mgr = (select empno 
+                              from emp 
+                              where ename = 'KING'));
+                              
+select empno,ename,sal
+from emp 
+where empno IN(select mgr
+               from emp 
+               where job = 'CLERK');
+
+--ALL:다 만족해야함              
+select empno,ename,sal 
+from emp
+where sal > all(select avg(sal)
+                from emp
+                group by deptno 
+                );
+--위아래 같음
+select empno,ename,sal 
+from emp
+where sal > (select max(avg(sal))
+                from emp
+                group by deptno 
+                );
+
+select empno,ename,sal 
+from emp           
+where sal> all(select min(sal)
+                from emp
+                group by deptno );
+--위아래 같음
+select empno,ename,sal 
+from emp           
+where sal>(select MAX(MIN(sal))
+                from emp
+                group by deptno );
+
+select empno,ename,sal
+from emp 
+where sal<ALL(select  sal
+                from emp 
+                where job = 'SALESMAN');
+--위아래 같음                 
+select empno,ename,sal
+from emp 
+where sal<(select  MIN(sal)
+                from emp 
+                where job = 'SALESMAN');
+                
+--ANY :  공부 하삼 이거 문제가 있음 아래꺼 쭉' 
+select empno,ename,sal
+from emp
+where sal> ANY(select min(sal)
+               from emp 
+               group by deptno);
+
+
+select empno,ename,hiredate
+from emp
+where hiredate < ALL(select hiredate
+                     from emp
+                     where deptno = (select deptno
+                                     from dept 
+                                     where loc='DALLAS'));
+
+
+
+
+
+
+--SET UNION UNION ALL INTERSECT MINUS 
+
+select empno,ename,job,deptno
+from emp
+where deptno = 10;
+
+select empno,ename,job,deptno
+from emp 
+where job ='CLERK';
+
+--UNION : 5개
+select empno,ename,job,deptno
+from emp
+where deptno = 10
+UNION
+select empno,ename,job,deptno
+from emp 
+where job ='CLERK';
+
+--UNION ALL : 6개
+select empno,ename,job,deptno
+from emp
+where deptno = 10
+UNION ALL
+select empno,ename,job,deptno
+from emp 
+where job ='CLERK';
+
+--INTERSECT : 공통인거 나옴
+select empno,ename,job,deptno
+from emp
+where deptno = 10
+INTERSECT
+select empno,ename,job,deptno
+from emp 
+where job ='CLERK';
+
+--MINUS 차집합
+select empno,ename,job,deptno
+from emp
+where deptno = 10
+MINUS
+select empno,ename,job,deptno
+from emp 
+where job ='CLERK';

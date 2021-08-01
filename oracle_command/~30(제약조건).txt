@@ -1,0 +1,131 @@
+drop table test_table1;
+
+--NOT NULL
+create table test_table1(
+data1 number,
+data2 number not null
+);
+
+insert into test_table1(data1,data2) values(100,101);
+insert into test_table1 values(10,10);
+insert into test_table1(data2) values(20);
+
+select * from test_table1;
+
+--UNIQUE //null은 가능 나머지 중복 불가능 
+--제약 조건 이름 설정해주면 찾기 쉬움 오류시
+drop table test_table2;
+create table test_table2(
+data1 number,
+data2 number constraint TEST_TABLE_DATA3_UK unique);
+
+insert into test_table2 values (10,10);
+insert into test_table2 values (10,10);
+insert into test_table2 values (10,null);
+select * from test_table2;
+
+--primary key : 중복 X null X
+drop table stu;
+create table stu(
+data1 number,
+data2 number constraint TEST_TABLE_DATA2_PK primary key);
+
+insert into stu values(100,101);
+insert into stu values(100,102);
+insert into stu values(100,103);
+
+select * from stu;
+
+-- foregin key : 다른 테이블 혹은 같은 테이블 컬럼을 참조하는 제약 조건 
+-- 보통 primary key 를 사용  null은 가능 
+
+drop table t5;
+
+create table t4(
+data1 number constraint T$_PK primary key,
+data2 number not null);
+insert into t4 values(100,101);
+insert into t4 values(200,201);
+
+select * from t4;
+
+create table t5(
+data3 number not null,
+data4 number constraint T5_FK references t4(data1)
+);
+
+insert into t5 values(1,100);
+insert into t5 values(1,100);
+insert into t5 values(1,200);
+insert into t5 values(2,200);
+insert into t5 values(5,null);
+insert into t5 values (10,300);
+
+select * from t5;
+
+--check 제약 조건 컬럼에 저장될 값을 지정 
+
+drop table t6;
+create table t6(
+data1 number constraint T6_data1_CK 
+                check(data1 between 1 and 10),
+data2 number constraint T6_data2_ck 
+                check(data2 in (10,20,30))
+);
+
+insert into t6 values (10,20);
+insert into t6 values (11,20);
+
+select * from t6;
+
+--컬럼레벨 제약 조건.. 컬럼 옆에
+--테이블레벨 제약 조건 .. 하단부에 몰아서 
+
+drop table t10;
+create table t10(
+data1 number constraint t10_d1_pk primary key,
+data2 number not null constraint t10_d2_UK unique,
+data3 number not null constraint t10_d3_FK references emp(empno),
+data4 number not null constraint t10_d4_CK check(data4 between 1 and 10),
+data5 number not null constraint t10_d5_ck check(data5 in (10,20,30))
+); 
+
+drop table t10;
+create table t10(
+data1 number,
+data2 number not null,
+data3 number not null,
+data4 number not null,
+data5 number not null,
+constraint t10_d1_PK primary key(data1),
+constraint t10_d2_UK unique(data2),
+constraint t10_d3_FK foreign key(data3) references emp(empno),
+constraint t10_d4_CK check (data4 between 1 and 10),
+constraint t10_d5_ck check (data5 IN (10,20,30))
+);
+
+create table t10(
+data1 number,
+data2 number not null,
+data3 number not null,
+data4 number not null,
+data5 number not null,
+primary key(data1),
+unique(data2),
+foreign key(data3) references emp(empno),
+check (data4 between 1 and 10),
+check (data5 IN (10,20,30))
+);
+
+--복합키 : 테이블 레벨로만 가능
+--primary key : NOTNULL
+drop table t10;
+create table t10(
+data1 number, 
+data2 number ,
+constraint  t10_comno_pk primary key(data1,data2));
+
+insert into t10 values(10,10);
+insert into t10 values(20,10);
+insert into t10 values(10,null);
+insert into t10(data1,data2) values(10,20 );

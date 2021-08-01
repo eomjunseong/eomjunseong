@@ -1,0 +1,11 @@
+select * from emp;
+select * from dept;
+select * from bonus;
+select * from salgrade;
+
+--DDL create alter drop
+--DML insert update delete select(절반이상) 
+--DCL grant revoke rollback commit
+
+
+

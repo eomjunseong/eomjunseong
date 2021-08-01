@@ -1,0 +1,133 @@
+--100일  
+select sysdate+100,sysdate-1 from dual;
+
+select hiredate,hiredate +10
+from emp ;
+
+select hiredate,hiredate-100
+from emp
+where job = 'SALESMAN';
+
+select trunc(sysdate-hiredate),floor(sysdate-hiredate)
+from emp;
+
+select sysdate as abc
+from dual;
+
+select sysdate as "abc"
+from dual;
+
+select sysdate,round(sysdate,'CC') as "년도 두자리" , round(sysdate,'YYYY') as "월기준",
+        round(sysdate,'DDD') as 시기준 ,round(sysdate,'HH') as "분기준",
+        round(sysdate,'MM') as "일기준" , round(sysdate,'DAY') as 주기준,
+        round(sysdate,'MI') as 초기준
+from dual;
+
+select hiredate,round(hiredate,'YYYY') as 월기준
+from emp;
+
+--버림
+select sysdate, trunc(sysdate,'CC') as 년도두자리, trunc(sysdate,'YYYY') as 월기준,
+        trunc(sysdate,'DDD') as 시기준, trunc(sysdate,'HH') as 분기준,
+        trunc(sysdate,'MM') as 일기준, trunc(sysdate,'DAY') 주기준,   --무조건 일요일 나옴 
+        trunc(sysdate,'MI')as 초기준
+from dual;
+
+select empno,ename,sal,hiredate
+from emp
+where hiredate>='1981/01/01' and hiredate<='1981/12/31';
+--위아래 같다 
+select empno,ename,sal,hiredate
+from emp
+where hiredate between '1981/01/01' and '1981/12/31';
+-- 위 아래 같다
+select empno,ename,sal,hiredate
+from emp
+where trunc(hiredate,'YYYY') ='1981/01/01'; --월기준 버림 
+
+--모든 사원이 근무한 개월 수 
+select trunc(MONTHS_BETWEEN(SYSDATE,hiredate)) as 근무개월수
+from emp ;
+
+--백일후 백개월후 
+select sysdate+100,add_months(sysdate,100) from dual; 
+
+select hiredate,add_months(sysdate,100)
+from emp;sele
+
+--지정된 날짜 기준 지정된 요일이 몇일인지
+select sysdate, next_day(sysdate, '월요일') from dual;
+
+--지정된 날짜의 월의 마지막 날짜 구하기 
+select sysdate,LAST_DAY(SYSDATE) from dual;
+
+--to_char : 오라클 --> 프로그램 : 날짜를 --> 문자열  
+select to_char(sysdate,'YYYY/MM-dd HH:MI:ss AM') from dual;
+
+--에러
+select sysdate, to_char(sysdate,'YYYY년 MM월 DD일 HH시 MI분 SS초 AM') from dual;
+
+--to_date : 프로그램 -->오라클
+select to_date('2018-03-20 01:58:20 오후','YYYY-MM-DD HH:MI:SS AM') from dual; 
+
+select to_char(sysdate,'YYYY/MM--DD')
+from emp;
+
+
+--decode 
+select empno,ename,
+        decode(deptno,10,'인사과',
+                      20,'개발부',
+                      30,'경영지원팀',
+                      40,'생산부')
+from emp ;
+
+select job,round(decode(job,'CLERK',sal*1.1,
+                      'SALESMAN',sal*1.15,
+                      'PRESIDENT',sal*3,
+                      'MANAGER',sal*1.05,
+                      'ANALYST',sal*1.2
+))
+from emp;
+
+-----------------------------decode else-------------- 
+select job,round(decode(job,'CLERK',sal*1.1,
+                      'SALESMAN',sal*1.15,
+                      'PRESIDENT',sal*3,
+                      
+                      0
+))
+from emp;
+---------------------------------------------------------
+
+--case 
+select empno,ename,
+       case when sal<1000 then 'c등급'
+            when sal>=1000 and sal<2000 then 'B등급'
+            when sal>=2000 then 'a등급'
+        end
+from emp;
+
+
+select empno,ename,
+        case when sal<=1000 then sal*1
+             when sal between 1000 and 2000 then sal*1.5
+             when sal>2000 then sal*2
+        end
+from emp ;
+
+select empno,ename,
+        case when sal<=1000 then sal*2
+             when sal>1000 and sal<2000 then sal*1.5
+             when sal>=2000 then sal*3
+        end
+from emp ;
+-----------------------------case else-------------- 
+select empno,ename, case when sal<=1000 then sal*2
+                         when sal>1000 and sal<2000 then sal*1.2
+                         else sal*3
+                        end
+from emp;
+
+---------------------------------------------------------
+

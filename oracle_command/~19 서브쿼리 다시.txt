@@ -1,0 +1,107 @@
+select sum(sal)
+from emp;
+
+--sum 에서 null은 무시 not 무한대 
+select sum(comm)
+from emp;
+
+select sum(sal)
+from emp 
+where sal>=1500;
+
+select sum(sal)
+from emp
+where deptno = 20;
+
+select sum(sal)
+from emp
+where job='SALESMAN';
+
+select round(avg(sal)),trunc(avg(sal)),round(avg(comm))
+from emp;
+
+--받는 사람 평균 // null 총인원에서 제외
+select avg(comm)
+from emp;
+
+-- 총인원 평균
+select avg(nvl(comm,0))
+from emp;
+
+select avg(sal)
+from emp 
+where comm is not null;
+
+select avg(sal)
+from emp
+where deptno=30;
+
+select avg(sal+nvl(comm,0))
+from emp
+where job='SALESMAN';
+
+--총인원
+select count(empno)
+from emp;
+
+--null 포함 X
+select count(comm)
+from emp;
+
+--null 포함
+select count(nvl(comm,0))
+from emp;
+
+select count(*)
+from emp;
+
+select max(sal),min(sal)
+from emp ;
+
+select deptno,avg(sal)
+from emp
+group by deptno;
+
+select job,sum(sal)
+from emp 
+group by job;
+
+select deptno,avg(sal)
+from emp 
+where sal>=1500
+group by deptno;
+
+
+-- 1.from 
+-- 2.where
+-- 3.group by
+-- 4.having
+-- 5.select
+-- 6.order by
+--where : select 각 로우에 대한 조건
+--having : group 의 조건 
+
+select deptno,avg(sal)
+from emp
+group by deptno
+having avg(sal)>=2000;
+
+select deptno,sum(sal)
+from emp
+group by deptno
+having max(sal)<=3000;
+
+--부서별 최소 급여액이 1000이하인 부서에서 직무가 CLERK 인 사원들의 급여 총합
+select deptno,sum(sal)
+from emp
+where job = 'CLERK'
+group by deptno
+having min(sal)<=1000;
+
+--각 부서의 급여 최소가 900이상 최대가 10000이하인 부서의 사원들 중 1500이상의
+--급여룰 받는 사원들의 평균 급여액을 가져온다.
+select deptno , avg(sal)
+from emp 
+where sal>=1500
+group by deptno
+having min(sal)>= 900 and max(sal)<= 10000 ; 
