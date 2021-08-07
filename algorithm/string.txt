@@ -31,6 +31,15 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     cout<<a;
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+string s = "abcd";
+string t1 = s.substr(3,3); // "d" --> 오류 아님//프로그래머스 문자열 압축시 활용함 
+for(int i=1 ; i<=s.size()/2; i++){
+    for(int  j=i; j<s.size(); j+=i){
+        
+    }
+}
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX	
+
 
 str1.replace(5, 2, str2); //"BlockDMask"  --> kD가 str2로 대체 
 

@@ -1,4 +1,4 @@
-#include <stack>
+#include <stack> --> clear 없음
 
 //stack<int> q2({ 1, 2, 3, 4, 5 });  OK
 stack<int> s;
@@ -8,7 +8,7 @@ s.push(2);
 s.push(3);
 
 s.top(); //가장 상단 반환
-s.q(); //삭제
+s.pop(); //삭제
 
 s.size();//bool
 s.empty();
@@ -24,3 +24,20 @@ while(!s.empty()){
 
 //인덱스 접근 X 
 
+
+레이저 문제 
+
+()(((()())(())()))(()) --> 17
+	string str;
+	cin>>str;
+	int sum  = 0 ; 
+	stack<char> st;
+	for(int i =0 ;i<str.size();i++){
+		if(str[i]=='(') st.push('(');
+		else{
+			st.pop();
+			if(str[i-1]=='(') sum+=st.size();
+			else sum++;
+		}
+	}
+	cout<<sum;

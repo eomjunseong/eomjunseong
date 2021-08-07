@@ -65,3 +65,9 @@ EXCEPT:
 없는값 333
 cout<<m1[333]; --> 출력 0 생각하긔 
 --> 이것도 KEY 가 0인경우임 ..string이면 렉처먹을수도 . 아무것도 안뜨긴함
+
+
+============ 써먹은거 ㅇㅇ 
+int cc=1; 
+map< int , pair<int,int> > m;
+m[cc++]= make_pair(i,j);

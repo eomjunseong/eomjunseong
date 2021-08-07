@@ -4,9 +4,9 @@ floor// 내림
 floor(N + 0.5);  //반올림 
 
 
-	cin.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
 
 #for문안에서,,,
 for(int i = 0 ; i<s.length();i++) 
