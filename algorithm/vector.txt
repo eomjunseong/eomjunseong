@@ -48,3 +48,7 @@ v.erase(  unique(v.begin(),v.end())  ,  v.end()  );
 
 //vector<string > --> sort 정렬시 --> 길이 X 사전순
 //sort(vec.begin(),vec.end(),greater<string>());가능
+
+vector<int> map[10][10] --> map[i][j]v.push_back() //OK
+
+vector<pair<int,int>> vec --> sort(vec.begin(),vec.end())//OK first 오름 차순 
