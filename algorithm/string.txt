@@ -121,6 +121,7 @@ string s = "abcdefghid:123";
 vector : 주소 줘야함
 string : 인덱스 넘버
 s.erase(4); // abcd --> 인덱스 4포함 다 날림 -->vector.erase(주소)--> INDEX XXX && 하나
+s.erase(0,1)// abcd->bcd 하나날림 
 s.erase(4,3); // 인덱스 4부터 3개 지움 //갯수 초과시에도 문제 X 이긴한데 확인해봐야함 사용 X  
 s.erase(s.find("f"),1); // f만 지움 --> find가 인덱스값 반환 없으면 -1 
 s.erase(s.find("f")); f포함 뒤로  다 지움 

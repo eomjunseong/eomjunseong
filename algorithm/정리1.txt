@@ -32,10 +32,17 @@ for(int i=0; i<n; i++)
         arr1[i] |= arr2[i]; -->or연산  00110010 |= 10101010 -->10111010
 --> 지도 문제
 
-#include <cctype> //C++ --> 근데 없어도 작동하는듯...
-toupper // 문자 만 바꾸고 아닌건 그대로 리턴.... error X
-tolower
+#include <algorithm> --> transform
+#include <cctype> --> tolower&touuper
+transform(s3.begin(), s3.end(), s3.begin(), ::tolower);
+transform(s3.begin(), s3.end(), s3.begin(), ::toupper);
 
+//
+string s3 = "A1s1d";
+for(int i = 0 ; i<s3.size();i++){
+        s3[i]=tolower(s3[i]);
+} -->a1s1d;
+//
 
 #pair (queue등과의 활용이 아닌 단독 pair-->#include <utility> )
 pair<int, string> p;
@@ -58,7 +65,7 @@ using namespace std;
 
 *(A+B)%C == ( (A%C)+(B%C) ) %C;
 
-
+# min, max --> algorithm
 int main(void) {
 	string s = "abcabcabcabcdededededede";
     	int answer = 10;

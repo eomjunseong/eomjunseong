@@ -71,3 +71,19 @@ cout<<m1[333]; --> 출력 0 생각하긔
 int cc=1; 
 map< int , pair<int,int> > m;
 m[cc++]= make_pair(i,j);
+
+////////////////////////////////////////////////////////
+자동으로 키값 정렬되고 
+
+구체적 정렬 원할때,
+
+bool cmp(pair<string,int> &a,pari<string,int>&b){
+    return a.second>b.second;
+}
+
+map<string,int> m;
+vector<pari<string,int>> vec(m.begin(),m.end());
+sort(vec.end(),vec.end(),cmp);
+
+이런식...
+//////////////////////////////////////////////////////////
