@@ -1,0 +1,7 @@
+#include <algorithm>
+fill(vec.begin(),vec.begin()+4,1); --> {1,1,1,1......}
+int a[8] ;
+fill (a, a + 4, 1); //OK
+
+if(find(v.begin(),v.end(),---)==v.end()) --> true 는 ---가 없다는 의미 
+

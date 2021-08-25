@@ -24,7 +24,7 @@ string str2;    ==> true
 str1.substr() // //"BlockDMask"
 str2=str1.substr(5);   -->index 5부터 끝까지 반환
 str2=str1.substr(5,1); -->index 5부터 1개 반환   
-str2=str1.substr(5,4); -->index 5부터 4개 반환
+str2=str1.substr(5,4); -->index 5부터 4개 반환 // !!자르는 갯수 초과하면 렉처먹음
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     string str = "BlockMask";
     string a = str.substr(str.begin(),str.begin()+3);
@@ -130,3 +130,8 @@ bool comp(string s1, string s2){ // const string &s1,const string &s2
     return s1+s2>s2+s1;
 }
 
+
+
+char a = 'B'; --> 스트링화 할려면 
+string tmp ;
+tmp.push_back(a);

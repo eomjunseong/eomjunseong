@@ -87,3 +87,18 @@ sort(vec.end(),vec.end(),cmp);
 
 이런식...
 //////////////////////////////////////////////////////////
+
+map<string, vector<int>> m;
+
+m["ASD1"].push_back(1);
+m["ASD1"].push_back(2);
+m["ASD2"].push_back(3);
+m["ASD2"].push_back(1);
+m["ASD3"].push_back(2);
+m["ASD3"].push_back(3);
+------>vector<int> vec = m[str]; 가능 ㅇㅇ 
+for(auto itr = m.begin(); itr!=m.end();itr++){
+    sort(itr->second.begin(),itr->second.end());
+    sort((*itr).second.begin(),(*itr).second.end());
+}
+

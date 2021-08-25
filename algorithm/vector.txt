@@ -11,7 +11,25 @@ vector<int> v(5,2)// 2로 초기화된 5개원소
 vector<int> v2(v1)//v1을 복사 생성 
 
 int a[3] ={1,2,3};
+	
+    cout<< sizeof(a)<<endl;    //12
+	cout<< sizeof(a[0])<<endl; //4
+
 vector<int> v(a,a+sizeof(a)/sizeof(a[0])); //ok == ({1,2,3})
+vector<string> info({"java","210","150","cpp"});
+
+vector<vector<string>> vec(4,vector<string>(6,"-"));
+for(vector<string> v : vec){
+    for(string a : v){
+        cout<<a<<" ";
+    }
+    cout<<endl;
+}
+- - - - - -
+- - - - - -
+- - - - - -
+- - - - - -
+
 
 int test_arr[] = { 2, 4, 3, 6, 1, 7 };
 //OK : vector<int> test_vec ( { 2, 4, 3, 6, 1, 7 });

@@ -13,6 +13,7 @@ for(int i = 0 ; i<s.length();i++)
 // 이런거 할떄 s.length() 조심해야함 +(안에서 길이가 변할경우 ...) 
 
 #include <algorithm>
+        stable_sort()--> <int,int> 대입 순유지....
         reverse
         sort
         -sort(start,end)
@@ -36,8 +37,7 @@ for(int i=0; i<n; i++)
 #include <cctype> --> tolower&touuper
 transform(s3.begin(), s3.end(), s3.begin(), ::tolower);
 transform(s3.begin(), s3.end(), s3.begin(), ::toupper);
-
-//
+++++++++++++++++++
 string s3 = "A1s1d";
 for(int i = 0 ; i<s3.size();i++){
         s3[i]=tolower(s3[i]);

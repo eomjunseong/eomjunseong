@@ -5,9 +5,38 @@ priority_queue<T, Container, Compare>
 *default//내림차순 
 priority_queue<int> pq;  // - >  priority_queue<int, vector<int>, less<int>> pq;
 
-*오름차순 (greater : vector: 5,4,3,2,1 , but pq-->1,2,3,4,5)
-priority_queue<int,vector<int>,greater<int> > temp;
+*priority_queue<pair<int, int>> pq; 
+pair.first 값이 큰 순, 같으면 pair.second가 큰 순으로 정렬된다.
+pq.push({ 1,2 });
+pq.push({ 2,2 });
+pq.push({ 2,3 });
+pq.push({ 2,1 });
+pq.push({ 1,1 });
+-->
+(2,3)
+(2,2)
+(2,1)
+(1,2)
+(1,1) -->priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq; 가능
 
+https://developingbear.tistory.com/58 --> 공부
+
+*오름차순 (greater : vector: 5,4,3,2,1 , but pq-->1,2,3,4,5)
+
+#include <functional>    // greater
+
+priority_queue<int,vector<int>,greater<int> > temp;
+priority_queue<int,vector<int>,less<int> > temp;
+
+
+
+priority_queue<Student, vector<Student>, cmp> pq;  
+
+struct cmp { --> 구조체를만들어씀...
+    bool operator()(Student a, Student b) {  -->  " < " 없는게 마즘 
+        return a.id < b.id;
+    }
+};
 
 push(element)
 pop()
