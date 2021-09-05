@@ -17,6 +17,4 @@ return a*b/gcd(a,b);
 #unorder_map
 #set
 #hash_map
-#vector<vector<>>
-#string erase()
-#string //substr
+

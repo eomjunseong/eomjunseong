@@ -5,3 +5,9 @@ fill (a, a + 4, 1); //OK
 
 if(find(v.begin(),v.end(),---)==v.end()) --> true 는 ---가 없다는 의미 
 
+//char string 하나 변환
+for(int i = 'A' ; i<='Z';i++){
+    string tmp="";
+    tmp.push_back(char(i));
+    m[tmp]= dic++;
+}

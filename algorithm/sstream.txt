@@ -36,7 +36,7 @@ int main(void)
 {
     string dartResult = "1T2D3D#";
     stringstream ss(dartResult);
-	
+	//ss.str(dartResult);
     char c1,c2,c3,c4;
     int i1,i2,i3;
     ss>>i1;

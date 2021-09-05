@@ -86,3 +86,6 @@ order by comm nulls first;
 select ename ,comm 
 from emp 
 order by comm DESC nulls last;
+
+
+

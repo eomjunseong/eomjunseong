@@ -1,0 +1,181 @@
+CREATE TABLE DEP (
+     DEP_CD NUMBER NOT NULL, -- 부서코드
+     PARENT_CD NUMBER, -- 상위부서 코드
+     DEPT_NAME VARCHAR2(100) NOT NULL, -- 부서이름
+     PRIMARY KEY (DEP_CD)
+);
+INSERT INTO DEP VALUES ( 101, NULL, '총괄개발부');
+INSERT INTO DEP VALUES ( 102, 101, '모바일개발센터');
+INSERT INTO DEP VALUES ( 103, 101, '웹개발센터');
+INSERT INTO DEP VALUES ( 104, 101, '시스템개발센터');
+
+INSERT INTO DEP VALUES ( 105, 102, '쇼핑몰(모바일)');
+INSERT INTO DEP VALUES ( 106, 103, '외주SI');
+INSERT INTO DEP VALUES ( 107, 103, '쇼핑몰');
+INSERT INTO DEP VALUES ( 108, 105, '전산지원팀');
+INSERT INTO DEP VALUES ( 109, 106, '구축1팀');
+INSERT INTO DEP VALUES ( 100, 106, '구축2팀');
+INSERT INTO DEP VALUES ( 111, 104, 'ERP시스템');
+SELECT  DEPT_NAME, DEP_CD, PARENT_CD, LEVEL
+FROM DEP 
+START WITH PARENT_CD IS NULL --최상위노드 설정,
+CONNECT BY PRIOR DEP_CD = PARENT_CD;--부모노드와 자식노드 연결
+
+select LPAD(' ', 2*(LEVEL-1))||deptno 부서 , empno, mgr, ename, level
+from emp
+start with mgr is null
+connect by PRIOR  empno = mgr ;--부모 자식 
+
+select deptno,deptno,rownum   from emp ;
+
+select ename,sal 
+from emp , dept  
+where exists(select 1 from emp where deptno =2);
+
+select deptno,job,sum(sal) 
+from emp 
+group by cube(deptno,job);
+
+select job,deptno,sum(sal) 
+from emp 
+group by cube(job,deptno);
+
+select deptno,job,sum(sal) --순서영향받음 rollup
+from emp 
+group by rollup(deptno,job);
+
+select job,deptno,sum(sal) --순서영향받음 rollup
+from emp 
+group by rollup(job,deptno);
+
+
+select deptno,job,sum(sal) 
+from emp 
+group by grouping sets(deptno,job);
+
+select job,deptno,sum(sal) 
+from emp 
+group by grouping sets(job,deptno);
+
+SELECT JOB, ENAME, SAL,
+   RANK( ) OVER (ORDER BY SAL DESC) ALL_RANK, 
+   RANK( ) OVER (PARTITION BY JOB ORDER BY SAL DESC) JOB_RANK
+FROM EMP;
+
+SELECT JOB, ENAME, SAL, 
+   RANK() OVER (PARTITION BY JOB ORDER BY SAL DESC) JOB_RANK 
+FROM EMP;
+
+SELECT JOB, ENAME, SAL
+ , RANK( ) OVER (ORDER BY SAL DESC) RANK
+ , DENSE_RANK( ) OVER (ORDER BY SAL DESC) DENSE_RANK
+FROM EMP; 
+
+SELECT JOB, ENAME, SAL 
+ , dense_RANK( ) OVER (ORDER BY SAL DESC) RANK
+ , row_number() OVER (ORDER BY SAL DESC) ROW_NUMBER
+FROM EMP;
+
+SELECT MGR, ENAME, SAL
+ , SUM(SAL) OVER (PARTITION BY MGR) MGR_SUM 
+FROM EMP;
+
+select mgr,ename,sal,
+    sum(sal) over(partition by mgr)asd
+from emp;
+
+SELECT MGR, ENAME, SAL
+ , SUM(SAL) OVER (PARTITION BY MGR ORDER BY SAL RANGE UNBOUNDED PRECEDING) as MGR_SUM 
+FROM EMP;
+
+SELECT MGR, ENAME, SAL
+ , MAX(SAL) OVER (PARTITION BY MGR) as MGR_MAX 
+FROM EMP;
+
+SELECT MGR, ENAME, SAL 
+FROM 
+ ( SELECT MGR, ENAME, SAL
+        , MAX(SAL) OVER (PARTITION BY MGR) as IV_MAX_SAL 
+ FROM EMP
+) 
+WHERE SAL = IV_MAX_SAL ; 
+
+SELECT MGR ---현재행을 기준으로 처음까지 RANGE UNBOUNDED PRECEDING
+, ENAME
+, SAL
+, SUM(SAL) OVER (PARTITION BY MGR ORDER BY SAL RANGE UNBOUNDED PRECEDING) AS MGR_SUM                                             
+FROM EMP;  
+
+
+SELECT MGR, ENAME, HIREDATE, SAL
+, MIN(SAL) OVER(PARTITION BY MGR ) as MGR_MIN 
+FROM EMP;
+
+SELECT MGR, ENAME, HIREDATE, SAL
+, MIN(SAL) OVER(PARTITION BY MGR ORDER BY HIREDATE) as MGR_MIN 
+FROM EMP;
+
+SELECT MGR, ENAME, HIREDATE, SAL
+, ROUND (AVG(SAL) OVER (PARTITION BY MGR ORDER BY HIREDATE ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING)) as MGR_AVG 
+FROM EMP; 
+
+SELECT ENAME, SAL
+     , COUNT(*) OVER (ORDER BY SAL RANGE BETWEEN 50 PRECEDING AND 150 FOLLOWING) as SIM_CNT
+  FROM EMP; 
+  
+  SELECT DEPTNO, ENAME, SAL
+     , FIRST_VALUE(ENAME) OVER (PARTITION BY DEPTNO ORDER BY SAL DESC ROWS UNBOUNDED PRECEDING) as DEPT_RICH 
+  FROM EMP; 
+  
+  SELECT DEPTNO, ENAME, SAL
+     , FIRST_VALUE(ENAME) OVER (PARTITION BY DEPTNO ORDER BY SAL DESC, ENAME ASC ROWS UNBOUNDED PRECEDING) as RICH_EMP
+  FROM EMP; 
+  
+  SELECT DEPTNO, ENAME, SAL
+     , LAST_VALUE(ENAME) OVER ( PARTITION BY DEPTNO ORDER BY SAL DESC ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) as DEPT_POOR 
+  FROM EMP;
+  
+  SELECT ENAME, HIREDATE, SAL
+     , LAG(SAL) OVER (ORDER BY HIREDATE) as PREV_SAL 
+  FROM EMP 
+ WHERE JOB = 'SALESMAN';
+ 
+ SELECT ENAME, HIREDATE, SAL
+     , LAG(SAL, 2, 0) OVER (ORDER BY HIREDATE) as PREV_SAL 
+  FROM EMP 
+ WHERE JOB = 'SALESMAN' ;
+ 
+ SELECT ENAME, HIREDATE
+     , LEAD(HIREDATE, 1) OVER (ORDER BY HIREDATE) as "NEXTHIRED" 
+  FROM EMP;
+  
+   SELECT ENAME, HIREDATE
+     , LEAD(HIREDATE, 2,null) OVER (ORDER BY HIREDATE) as "NEXTHIRED" 
+  FROM EMP;
+  
+  SELECT ENAME, SAL
+     , ROUND(RATIO_TO_REPORT(SAL) OVER (), 2) as R_R 
+  FROM EMP ;
+
+SELECT ENAME, SAL
+     , ROUND(RATIO_TO_REPORT(SAL) OVER (), 2) as R_R 
+  FROM EMP 
+ WHERE JOB = 'SALESMAN'; 
+ 
+ select job,ename,sal,round(ratio_to_report(sal)over(partition by job),2) asd from emp;
+ 
+ SELECT DEPTNO, ENAME, SAL
+     , PERCENT_RANK() OVER (PARTITION BY DEPTNO ORDER BY SAL DESC) as P_R 
+  FROM EMP; 
+  
+  SELECT DEPTNO, ENAME, SAL,job
+     , CUME_DIST() OVER (PARTITION BY deptno ORDER BY SAL DESC) as CUME_DIST 
+  FROM EMP; 
+  
+  SELECT ENAME, SAL
+     , NTILE(4) OVER (ORDER BY SAL DESC) as QUAR_TILE 
+  FROM EMP ;
+    
+  SELECT ENAME, SAL,deptno
+     , NTILE(4) OVER (partition by deptno ORDER BY SAL DESC) as QUAR_TILE 
+  FROM EMP ;

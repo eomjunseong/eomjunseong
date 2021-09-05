@@ -53,7 +53,7 @@ where not(empno=7499 or empno=7566 or empno=7839);
 --위아래 같음 
 select empno,ename
 from emp
-where NOT (empno IN(7499,7566,7839));
+where NOT empno IN(7499,7566,7839);
 
 --LIKE
 select ename,empno

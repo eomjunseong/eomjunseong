@@ -238,4 +238,46 @@
 	프로그래머스 1개 (21/21)	
 	psat for ncs 언어 ch7 심화
 	psat for ncs 수리 10(40/100)	
-	강민혁 자소서 13일차		
+	강민혁 자소서 13일차	
+
+0826 -	KISA 핀테크 아카데미 4일차
+
+0827 -	KISA 핀테크 아카데미 5일차
+
+0828 -	새금중 자소서 + 사진촬영(감동)
+	psat for ncs 언어 8심화
+	psat for ncs 수리 4게(44/100)
+	
+0829 -	새금중 자소서(~03:00... 다음날 피곤해 죽음)
+	
+0830 -	(새금중 자소서 여파로 17:00~19:00 잠)
+	psat for ncs 언어 8심화
+	프로그래머스 10문제 복습(10/60)
+	sql ~24 까지 
+
+0831 -	sql 기록 복습 완 O
+	psat for ncs 언어 9기본 O
+	psat for ncs 수리(50/100) O 	
+	프로그래머스 10문제 복습(20/60) 
+	sqld pdf chap 1 ++ union
+
+0901 -	sql 기록 복습 완 O
+	psat for ncs 언어 9심화 O
+	psat for ncs 수리(55/100) O 	
+	프로그래머스 lv2(30/60)
+
+0902 -  	psat for ncs 언어 10기본 O
+	psat for ncs 수리(60/100) O 	
+	sqld 시험 공부 D-1
+	프로그래머스 lv2(40/60)
+
+0903 -  	psat for ncs 언어 10심화 O
+	psat for ncs 수리(70/100) O 	
+	sqld 시험 공부 D-2
+	프로그래머스 lv2(60/60)	
+
+0904 -   	새금중 코테
+	sqld 시험 공부 D-1
+
+0905 -  	sqld 시험
+	정보통신롯데 
