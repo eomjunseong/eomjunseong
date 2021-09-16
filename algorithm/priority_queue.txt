@@ -24,19 +24,44 @@ https://developingbear.tistory.com/58 --> 공부
 *오름차순 (greater : vector: 5,4,3,2,1 , but pq-->1,2,3,4,5)
 
 #include <functional>    // greater
-
+=======================================================
+vector<Student> vec;
+priority_queue<Student,vector<Student>,cmp> pq(vec.begin(),vec.end());
+	
+=========================================================
 priority_queue<int,vector<int>,greater<int> > temp;
 priority_queue<int,vector<int>,less<int> > temp;
 
-
-
-priority_queue<Student, vector<Student>, cmp> pq;  
-
-struct cmp { --> 구조체를만들어씀...
-    bool operator()(Student a, Student b) {  -->  " < " 없는게 마즘 
-        return a.id < b.id;
-    }
+=========================================================
+struct Student{
+	int a,b,c;
+	Student(int q,int w ,int e){
+		a=q;b=w;c=e;
+	}
+	bool operator<(const Student s) const {
+		return a<s.a;
+	}
 };
+==>priority_queue<Student> pq; //OK 
+
+===========================================================
+struct Student{
+	int a,b,c;
+	Student(int q,int w ,int e){
+		a=q;b=w;c=e;
+	}
+};
+
+struct cmp{
+	bool operator()(Student aa, Student b){
+		return aa.a<b.a;
+	}
+};
+==>priority_queue<Student, vector<Student>, cmp> pq;  
+
+
+
+
 
 push(element)
 pop()

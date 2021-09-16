@@ -25,20 +25,6 @@ str1.substr() // //"BlockDMask"
 str2=str1.substr(5);   -->index 5부터 끝까지 반환
 str2=str1.substr(5,1); -->index 5부터 1개 반환   
 str2=str1.substr(5,100); -->index 5부터 100개 반환 // !!자르는 갯수 초과하면 끝까지만 반환
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    string str = "BlockMask";
-    string a = str.substr(str.begin(),str.begin()+3);
-    cout<<a;
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-string s = "abcd";
-string t1 = s.substr(3,3); // "d" --> 오류 아님//프로그래머스 문자열 압축시 활용함 
-for(int i=1 ; i<=s.size()/2; i++){
-    for(int  j=i; j<s.size(); j+=i){
-        
-    }
-}
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX	
 
 
 str1.replace(5, 2, str2); //"BlockDMask"  --> kD가 str2로 대체 
@@ -77,11 +63,16 @@ base.append("appended!");
 base.append(str2,0,4); //->str2의 idx 0부터 4개 q붙임 ;
 
 str1.begin();
+
 str1.end(); --> sort 가능 
+
 string str1="abcdefghi";
+
 sort(str1.begin(),str1.end(),greater<char>());
+
 reverse(str1.begin(),str1.end());
-//정렬하고 사용
+
+//정렬하고 사용해야함 
 s1.erase(    unique(   s1.begin()  ,s1.end()   ),   s1.end());
 
 string str1="abcdefghi";
@@ -97,14 +88,19 @@ string str1="abcdefghi";
 str1+='a'; OK
 str1+="aa"; OK
 
-* 숫자로
-string s  = "1000";
-int a = stoi(s); // 1000;  string TO int 
 
-* 스트링화 ,  문자열로
-int a = 4523;
-string str = to_string(a); // 스트링화 
-cout<<str.size(); //4 
+string a = "123";
+a+=to_string('A'); --> 12365
+a+=to_string('1'); --> 12349
+a+=to_string(49);  -->12349 // 즉 그냥 숫자를 더하는 용도임 to_string은 
+
+//단순 숫자를 더하면 안됨 ; 
+a+=49;             -->1231
+a+=to_string(49);  -->12349
+a+='1';            -->1231
+a+='A'             -->123A
+a+="AD";           -->123AD
+
 
 *문자열 --> 숫자로
 char arr[5]="1000";
@@ -135,3 +131,13 @@ bool comp(string s1, string s2){ // const string &s1,const string &s2
 char a = 'B'; --> 스트링화 할려면 
 string tmp ;
 tmp.push_back(a);
+
+char a = 'B';
+string tmp ;
+tmp+=a;
+cout<<tmp; //잘됨 ; 
+ 
+string a= "0.23s";
+string tmp = a.substr(0,100);//문제없음
+int aa = stof(tmp)*100; 
+cout<<aa; //23

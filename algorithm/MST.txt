@@ -1,0 +1,122 @@
+
+
+Minimum Spanning Tree
+
+@크루스칼 알고리즘 
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std; 
+
+int getRoot(vector<int>& parent, int x)  // 인수로 넘긴 정점의 부모 정점을 알려줌
+{
+    if (parent[x] == x) return x;
+    return parent[x] = getRoot(parent, parent[x]);
+}
+
+void unionParent(vector<int>& parent, int a, int b)  // 두 정점을 병합함. 부모가 같은, 같은 그룹으로.
+{
+    int par_a = getRoot(parent, a);
+    int par_b = getRoot(parent, b);
+    if(par_a < par_b) parent[par_b] = par_a;
+    else parent[par_a] = par_b;
+}
+
+bool find(vector<int>& parent, int a, int b)  // 두 정점이 같은 부모를 가졌는지 확인
+{
+    int par_a = getRoot(parent, a);
+    int par_b = getRoot(parent, b);
+    if(par_a == par_b) return true;
+    else return false;
+}
+
+bool compare(vector<int> a, vector<int> b)
+{
+    return a[2] < b[2];
+}
+
+int solution(int n, vector<vector<int>> costs) {	
+    int answer = 0;
+    
+    사실이게 우선순위 큐로 구현--> 역할을함 
+	sort(costs.begin(), costs.end(), compare);
+    
+    vector<int> parents(n);
+    
+    for(int i = 0; i < parents.size(); i++)
+        parents[i] = i;
+    
+    for(int i = 0; i < costs.size(); i++)
+    {
+        if(!find(parents, costs[i][0], costs[i][1]))
+        {
+            unionParent(parents, costs[i][0], costs[i][1]);
+            answer += costs[i][2];
+        }
+    }
+
+	return answer;
+}
+
+프림 알고리즘 Prim --> a b 연결되면 ab각각에 이어져있는 최소값 선택 후 갱신 
+
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <limits.h>
+
+using namespace std;
+
+int solution(int n, vector<vector<int>> costs) {
+	int answer = 0;
+
+	vector<vector<int>> graph(n, vector<int>(n));
+	for (int i = 0; i < costs.size(); i++)
+	{
+		graph[costs[i][0]][costs[i][1]] = costs[i][2];
+		graph[costs[i][1]][costs[i][0]] = costs[i][2];
+	}
+
+	vector<int> visited;
+	vector<int> unvisited;
+
+	visited.push_back(0);
+	for (int i = 1; i < n; i++)
+		unvisited.push_back(i);
+
+	for (int i = 1; i < n; i++)
+	{
+		int min = INT_MAX;
+		int min_index = 0;
+
+		for (int j = 0; j < i; j++)
+		{
+			for (int k = 0; k < n - i; k++)
+			{
+				if (graph[visited[j]][unvisited[k]] > 0 && min > graph[visited[j]][unvisited[k]])
+				{
+					min = graph[visited[j]][unvisited[k]];
+					min_index = k;
+				}
+			}
+		}
+
+		visited.push_back(unvisited[min_index]);
+		unvisited.erase(unvisited.begin() + min_index);
+		answer += min;
+	}
+
+	return answer;
+}
+
+#크루스칼 VS 프림
+#크루스칼은 간선 위주의 알고리즘
+#프림은 시작점을 정하고, 시작점에서 가까운 정점을 선택하면서 트리르 구성 
+#하므로 그 과정에서 사이클을 이루지 않지만 
+#크루스칼은 시작점을 따로 정하지 않고 
+#최소 비용의 간선을 차례로 대입 하면서 트리를 구성하기 때문에 사이클이 이루어지는 
+#항상 확인 해야한다.
+#프림의 경우 최소 거리의 정점을 찾는 부분에서 자료구조의 성능에 영향을 받는다.
+#크루스칼은 간선을 기준으로 정렬하는 과정이 오래 걸린다.
+#간선의 개수가 작은 경우에는 크루스칼, 간선의 개수가 많은 경우에는 프림.

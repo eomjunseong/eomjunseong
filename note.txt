@@ -255,24 +255,24 @@
 	프로그래머스 10문제 복습(10/60)
 	sql ~24 까지 
 
-0831 -	sql 기록 복습 완 O
-	psat for ncs 언어 9기본 O
-	psat for ncs 수리(50/100) O 	
+0831 -	sql 기록 복습 완 
+	psat for ncs 언어 9기본 
+	psat for ncs 수리(50/100) 	
 	프로그래머스 10문제 복습(20/60) 
 	sqld pdf chap 1 ++ union
 
-0901 -	sql 기록 복습 완 O
-	psat for ncs 언어 9심화 O
-	psat for ncs 수리(55/100) O 	
+0901 -	sql 기록 복습 완 
+	psat for ncs 언어 9심화 
+	psat for ncs 수리(55/100)  	
 	프로그래머스 lv2(30/60)
 
-0902 -  	psat for ncs 언어 10기본 O
-	psat for ncs 수리(60/100) O 	
+0902 -  	psat for ncs 언어 10기본 
+	psat for ncs 수리(60/100)  	
 	sqld 시험 공부 D-1
 	프로그래머스 lv2(40/60)
 
-0903 -  	psat for ncs 언어 10심화 O
-	psat for ncs 수리(70/100) O 	
+0903 -  	psat for ncs 언어 10심화 
+	psat for ncs 수리(70/100) 	
 	sqld 시험 공부 D-2
 	프로그래머스 lv2(60/60)	
 
@@ -280,4 +280,56 @@
 	sqld 시험 공부 D-1
 
 0905 -  	sqld 시험
-	정보통신롯데 
+	롯데정보통신 제출
+
+0906 - 	쉼-광진 ==> 공부하는둥 마는둥함 
+
+0907 - 	psat for ncs 언어 모의1
+	psat for ncs 수리(100/100) O 
+	프로그래머스 알고리즘 LV3 시작 (3/50)
+	
+0908 - 	psat for ncs 언어 모의2
+	프로그래머스  LV3 (6/50)
+
+0909 - 	psat for ncs 언어 모의3
+	psat for ncs 수리 증가폭 증가율 OK 
+	프로그래머스  LV3 작 (8/50)		
+	전공 1/14 	
+	 
+0910 - 	psat for ncs 언어 모의4
+	서원각 NCS 00 
+	ㅈ캡스톤 (13:00~16:00) 
+	전공 2/14
+	프로그래머스  LV3 작 (11/50)	
+
+0911 -토 	psat for ncs 언어 모의5
+	서원각 NCS-->버림
+	LG U+ 서류 제출 	
+
+0912 -일 휴식--> 꽃다발같은, 문래-시금치칰
+
+0913월 -	프로그래머스  LV3 작 (14/50)
+	혼잡 기은(1/9)
+	전공 (1/30)	
+
+0914화 -	프로그래머스  LV3 작 (17/50)
+	psat for ncs 추리(~16)
+	혼잡 기은(2/9)
+	롯데정보통신 인적성		
+	전공 (2/30)
+
+0915수 -	프로그래머스  LV3 작 (20/50)
+	psat for ncs 추리(~10)
+	혼잡 기은(3/9)
+	롯데정보통신 코테 
+	캡스톤 ppt 제작 및 제출(22:00~24:00)	
+	전공 (3/30)
+
+
+0916목 -	프로그래머스  LV3 작 (22/50)
+	백준 문자열 보충해서 품 -->4개 									https://github.com/tony9402/baekjoon/tree/main/string
+	psat for ncs 추리(~15)										문자열 추천 문제
+	혼잡 기은(4/9)
+	전공 (4/30)
+
+0917월 -	프로그래머스  LV3 작 (/50)	

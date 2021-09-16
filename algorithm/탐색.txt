@@ -1,0 +1,95 @@
+@@다익스트라  (음수X 양수일때만 가능)   (한 정점에서 다른 모든 정점)
+시작점 지정
+시작정점에서 모든 노드로 최소를 구함 --> MST 크루스칼과 차이 (얘는 최소 비용 전체연결)
+-->Dist[INF]
+탐색 노드에서 연결되어 있고, 비용이 가장 적게 드는 정점을 선택
+해당 정점 방문 체크,다시는 이 정점의 최소비용은 건들지 않겠다는 의미
+새로 방문한(체크한) 노드에 연결된 것들 갱신후 최소 비용 노드 선택 후 체크 반복 
+
+priority_queue<pair<int,int> > qu; 
+
+qu.push({0,start});    // 0 이지만 음수처리 생각 -0 
+dist[start]=0;
+
+// 우선순위큐 다비어야 끝남 // 따로 최소값 선택했다고 표시하는 식 X 
+while(!qu.empty()){
+    int cost=-qu.top().first;    // 음수가 포인트 
+    int here=qu.top().second;     // 제일 초기 start 
+    qu.pop();
+        
+    for(int i=0; i<arr[here].size(); i++){
+        int next=arr[here][i].first;
+        int nextcost=arr[here][i].second;
+        
+        //dist[next] start 에서 next 까지 비용
+        //dist[here] start 에서 here 까지 비용
+        //nextcost --> here 에서 next 까지 비용 
+        if(dist[next] > dist[here] + nextcost){    
+            dist[next]=dist[here]+nextcost;
+            qu.push({-dist[next],next});
+        }
+    }
+}
+
+
+
+@@밸만-포드 알고리즘 (한 정점에서 다른 모든 정점-->=다익스트라)
+BUT 음수가능 ---> 음의 사이클은 X 
+-->Dist[INF]
+vector<Edge> Ed;
+    
+for (i = 1; i <= m; i++) {
+    scanf("%d %d %d", &a, &b, &c);
+    Ed.push_back(Edge(a, b, c));
+}
+
+for (i = 1; i <= n; i++) {
+    dist[i] = 2147000000;
+}
+
+dist[1] = 0; //시작만 0으로 셋팅 
+for (i = 1; i < n; i++) { //5개 노드면 4개 간선으로 가야함으로 1,2,3,4, 테스트 
+    for (j = 0; j < Ed.size(); j++) {
+        int s = Ed[j].s;
+        int e = Ed[j].e;
+        int w = Ed[j].val;
+        //시작 정점이 무한대가 아니고, 
+        //dist[s]:시작정점에서 s까지
+        //w: s에서 e까지 가중치 
+        //dist[e]: 시작정점에서 e까지 가중치갱신 
+        if (dist[s] != 2147000000 && dist[s] + w < dist[e]) {
+            dist[e] = dist[s] + w;
+        }
+    }
+}
+
+//해당 파트에서 갱신되면 음의 사이클이 존재하는거임 
+for (j = 0; j < Ed.size(); j++) {
+    int u = Ed[j].s;
+    int v = Ed[j].e;
+    int w = Ed[j].val;
+    if (dist[u] != 2147000000 && dist[u] + w < dist[v]) {
+        printf("-1\n");
+        exit(0);
+    }
+}
+printf("%d\n", dist[n]);
+
+
+
+@@@@플로이드워샬 (전체 출발 노드로 생각하고 다 계산  )
+int INF = 1000000;
+
+int a[4][4] = {
+  { 0, 5, INF, 8 },
+  { 7, 0, 9, INF },
+  { 2, INF, 0, 4 },
+  { INF, INF, 3, 0 }
+};
+
+// 시간복잡도 V^3
+for(int k = 0; k < 4; k++)  // k 는 거쳐가는 정점
+for(int i = 0; i < 4; i++)  // i 는 행 (출발 정점)
+for(int j = 0; j < 4; j++)  // j 는 열 (도착 정점)
+if (a[i][k] + a[k][j] < a[i][j])  // 점화식 distance[i,j] = min(distance[i,j], distance[i,n] + distance[n,j])
+a[i][j] = a[i][k] a[k][j];

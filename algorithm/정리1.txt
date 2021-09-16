@@ -3,7 +3,6 @@ ceil // 반올림
 floor// 내림
 floor(N + 0.5);  //반올림 
 
-
         ios_base::sync_with_stdio(false);
         cin.tie(NULL);
         cout.tie(NULL);

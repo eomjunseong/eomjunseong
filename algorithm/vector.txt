@@ -4,6 +4,9 @@ vector 컨테이너 (using namespace std)
 - 맨 뒤쪽에서 삽입과 삭제가 가능
 - 중간에 값을 삽입 하거나 삭제할 수도 있음 
 - 배열기반이라, 삽입 삭제가 빈번하게 일어난다면 비효율적
+- check=vector<int>(n); //ok
+- check.assign(n,0); //OK (크기, 숫자) 필수
+
 
 vector<int> v //빈벡터
 vector<int> v(5) //0으로 초기화된 5개원소

@@ -102,3 +102,9 @@ for(auto itr = m.begin(); itr!=m.end();itr++){
     sort((*itr).second.begin(),(*itr).second.end());
 }
 
+====================================================
+map<string,int> m;
+vector<pair<string,int>> vec(m.begin(),m.end()); 
+// pair로 key value 분리해서 받아서 정렬가능
+
+    
