@@ -107,4 +107,15 @@ map<string,int> m;
 vector<pair<string,int>> vec(m.begin(),m.end()); 
 // pair로 key value 분리해서 받아서 정렬가능
 
-    
+
+====================================================
+map<string,string> m;
+m["asd"]="www" OK 
+cout<<m["asd"] ; OK
+
+map<string,CAR> m;
+m["asd"]=CAR(); X
+cout<<m["asd"] ;X 
+
+m.insert(make_pair("asd",CAR())); OK 
+cout<<m.find("asd")->second.name ; OK ...
