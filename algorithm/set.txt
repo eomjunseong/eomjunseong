@@ -1,0 +1,18 @@
+set<int> s;
+
+s.insert(1);
+s.insert(200);
+s.insert(-1);
+s.insert(3);
+s.erase(2);
+
+for(auto itr = s.begin(); itr!=s.end(); itr++){
+    cout<<*itr<<" ";
+}
+
+return 0;
+
+-->  가능은 한대 ,,, 굳이 싶긴함. + 클래스에서 map 처럼 작동안함
+set<pair<string,string>> s;
+s.insert(make_pair("asd","bbb"));
+s.insert({"asd","asd3?"});

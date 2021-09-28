@@ -74,3 +74,6 @@ v.erase(  unique(v.begin(),v.end())  ,  v.end()  );
 vector<int> map[10][10] --> map[i][j]v.push_back() //OK
 
 vector<pair<int,int>> vec --> sort(vec.begin(),vec.end())//OK first 오름 차순 
+
+vector<pair<int,pair<int,int>>> pq; 
+pq.push(make_pair(cnt,make_pair(b,c)));
