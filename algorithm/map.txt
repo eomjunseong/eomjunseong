@@ -77,13 +77,13 @@ m[cc++]= make_pair(i,j);
 
 구체적 정렬 원할때,
 
-bool cmp(pair<string,int> &a,pari<string,int>&b){
+bool cmp(pair<string,int> &a,pair<string,int>&b){
     return a.second>b.second;
 }
 
 map<string,int> m;
-vector<pari<string,int>> vec(m.begin(),m.end());
-sort(vec.end(),vec.end(),cmp);
+vector<pair<string,int>> vec(m.begin(),m.end());
+sort(vec.end(),vec.end(),cmp());
 
 이런식...
 //////////////////////////////////////////////////////////

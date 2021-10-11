@@ -79,3 +79,13 @@ int main(void) {
 	ss>>ch1;
 	cout<<ch1<<endl;//E 출력  
 }
+
+int main(void) {
+	string str1 = "FRANCE asdf adf 123 adf 2fadf";
+    stringstream ss ;
+    ss.str(str1);
+	string tmp;
+	while(ss>>tmp){
+		cout<<tmp<<endl;
+	}
+}

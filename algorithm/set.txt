@@ -6,11 +6,23 @@ s.insert(-1);
 s.insert(3);
 s.erase(2);
 
+
+for(auto t : s){
+    cout<<t<<" ";
+}	
+//위 아래 같은결과 
 for(auto itr = s.begin(); itr!=s.end(); itr++){
     cout<<*itr<<" ";
 }
 
-return 0;
+
+s.find(k);
+- 원소 k를 가리키는 반복자를 반환합니다.
+- 원소 k가 없다면 s.end() 와 같은 반복자를 반환.
+
+if(s.find(1)!=s.end()) --> s 안에 1일 있으면 실행 
+
+
 
 -->  가능은 한대 ,,, 굳이 싶긴함. + 클래스에서 map 처럼 작동안함
 set<pair<string,string>> s;

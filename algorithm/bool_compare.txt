@@ -13,12 +13,12 @@ int main(void){
 	vec.push_back({2,1});
 	vec.push_back({2,3});
 	vec.push_back({1,2});
-	sort(vec.begin(),vec.end(),compa);
+	sort(vec.begin(),vec.end(),compa());
 	for(int i = 0 ; i<vec.size();i++){
 		cout<<vec[i].first<<" "<<vec[i].second<<endl;
 	}	
 }
-//sort(vec.begin(),vec.end(),compa);
+//sort(vec.begin(),vec.end(),compa());
 2 3
 2 2
 2 1

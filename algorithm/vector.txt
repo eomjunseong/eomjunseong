@@ -1,5 +1,4 @@
 vector 컨테이너 (using namespace std)
-
 - 자동으로 메모리가 할당되는 배열
 - 맨 뒤쪽에서 삽입과 삭제가 가능
 - 중간에 값을 삽입 하거나 삭제할 수도 있음 
@@ -7,19 +6,27 @@ vector 컨테이너 (using namespace std)
 - check=vector<int>(n); //ok
 - check.assign(n,0); //OK (크기, 숫자) 필수
 
-
 vector<int> v //빈벡터
 vector<int> v(5) //0으로 초기화된 5개원소
 vector<int> v(5,2)// 2로 초기화된 5개원소
 vector<int> v2(v1)//v1을 복사 생성 
+vector<int> vec = {1,2,3}; //가능 !!!
+vector<int> vec({1,2,3}); //가능
+
+int test_arr[] = { 2, 4, 3, 6, 1, 7 };
+//OK : vector<int> test_vec ( { 2, 4, 3, 6, 1, 7 });
+//NO : vector<int> test_vec (test_arr);
+
+vector<int> v(a,a+sizeof(a)/sizeof(a[0])); //ok == ({1,2,3})
+vector<string> info({"java","210","150","cpp"});
+
 
 int a[3] ={1,2,3};
 	
     cout<< sizeof(a)<<endl;    //12
 	cout<< sizeof(a[0])<<endl; //4
 
-vector<int> v(a,a+sizeof(a)/sizeof(a[0])); //ok == ({1,2,3})
-vector<string> info({"java","210","150","cpp"});
+
 
 vector<vector<string>> vec(4,vector<string>(6,"-"));
 for(vector<string> v : vec){
@@ -34,9 +41,7 @@ for(vector<string> v : vec){
 - - - - - -
 
 
-int test_arr[] = { 2, 4, 3, 6, 1, 7 };
-//OK : vector<int> test_vec ( { 2, 4, 3, 6, 1, 7 });
-//NO : vector<int> test_vec (test_arr);
+
 
 v.size();
 v.empty(); -->true false;
@@ -59,7 +64,7 @@ string.substr(5,3) : 인덱스 넘버 --> 인덱스 5 부터 3개 추출해서 �
 //주소를 처 넣어야함 인덱스 번호가 아니라   
 v.erase(vec.begin()+2); //3번쨰 한개 삭제; 뒤로 다 날리는거 아님 --> string 뒤로 다 날림
 ==v.erase(vec.begin()+2,vec.begin()+3);
-vec.erase(vec.begin()+1,vec.begin()+3); // [) 1,2번쨰 삭제; 
+vec.erase(vec.begin()+1,vec.begin()+3); //  1,2번쨰 삭제; 
 vec.erase(vec.begin()+1, 3); // XXXXXXXXXXXXXXXXXX
 
 
@@ -76,4 +81,4 @@ vector<int> map[10][10] --> map[i][j]v.push_back() //OK
 vector<pair<int,int>> vec --> sort(vec.begin(),vec.end())//OK first 오름 차순 
 
 vector<pair<int,pair<int,int>>> pq; 
-pq.push(make_pair(cnt,make_pair(b,c)));
+pq.push(make_pair(cnt,make_pair(b,c)));``

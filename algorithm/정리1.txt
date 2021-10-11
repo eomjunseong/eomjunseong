@@ -7,24 +7,24 @@ floor(N + 0.5);  //반올림
         cin.tie(NULL);
         cout.tie(NULL);
 
+
 #for문안에서,,,
 for(int i = 0 ; i<s.length();i++) 
 // 이런거 할떄 s.length() 조심해야함 +(안에서 길이가 변할경우 ...) 
 
-#include <algorithm>
-        stable_sort()--> <int,int> 대입 순유지....
-        reverse
-        sort
-        -sort(start,end)
-        -sort(start,end,compare)
-        -sort(start,end,grearter<자료형>())
 
-        unique
-                vector<int> v = { 1, 2, 3, 1, 2 }; 
-                sort(v.begin(), v.end()); 
-                        //unique(v.begin(), v.end());
-                        //주석 풀면 답 틀림. unique는 제일 처음 나오는 쓰레기 값의 iterator를 반환.
-                v.erase(unique(v.begin(), v.end()),v.end()); //1,2,3
+#include <algorithm>
+stable_sort()--> <int,int> 대입 순유지....
+reverse
+sort
+-sort(start,end)
+-sort(start,end,compare)
+-sort(start,end,grearter<자료형>())
+
+#unique
+vector<int> v = { 1, 2, 3, 1, 2 }; 
+sort(v.begin(), v.end()); 
+v.erase(unique(v.begin(), v.end())   ,    v.end()); //1,2,3
 
 
 #비트연산 
@@ -36,6 +36,7 @@ for(int i=0; i<n; i++)
 #include <cctype> --> tolower&touuper
 transform(s3.begin(), s3.end(), s3.begin(), ::tolower);
 transform(s3.begin(), s3.end(), s3.begin(), ::toupper);
+
 ++++++++++++++++++
 string s3 = "A1s1d";
 for(int i = 0 ; i<s3.size();i++){
@@ -66,16 +67,17 @@ using namespace std;
 
 # min, max --> algorithm
 int main(void) {
-	string s = "abcabcabcabcdededededede";
-    	int answer = 10;
-   	 answer=min(answer , s.length()); // 랙처먹음 
-	//int len = s.length(); 하고 len을 넣어주면 또 됨.... 
-   	 cout<<answer<<endl;
-    
-   	 return 0;
+        string s = "abcabcabcabcdededededede";
+        int answer = 10;
+        answer=min(answer , s.length()); // 랙처먹음 
+        //int len = s.length(); 하고 len을 넣어주면 또 됨.... 
+
+        cout<<answer<<endl;
+
+        return 0;
 }
 	
 
-//주식문제 
+//주식문제 --> 까릿 ㅎㅎ 
 
 stack에다 값이 아닌 인덱스 쌓기

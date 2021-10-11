@@ -1,6 +1,8 @@
 memset-->  #cstring
-memset(arr,0,sizeof(0)); ---> 1 비트용이라 , 0 or bool만가능
+memset(채울곳,채울값,sizeof())
+memset(arr,0,sizeof(arr)); ---> 1 비트용이라 , 0 or bool만가능
 
 fill-->
 int dist[V]; 
+fill(시작주소,끝다음주소,채울값)
 fill(dist,dist+V,2147000000); --> 끝나는 위치 +1
