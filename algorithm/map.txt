@@ -119,3 +119,8 @@ cout<<m["asd"] ;X
 
 m.insert(make_pair("asd",CAR())); OK 
 cout<<m.find("asd")->second.name ; OK ...
+=================================
+
+auto itr  = SET.find(k);
+itr = prev(itr);
+itr = next(itr);

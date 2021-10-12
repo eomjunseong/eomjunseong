@@ -1,3 +1,4 @@
+#기본적으로 정려되어 들어감 오름차순
 set<int> s;
 
 s.insert(1);
@@ -28,3 +29,7 @@ if(s.find(1)!=s.end()) --> s 안에 1일 있으면 실행
 set<pair<string,string>> s;
 s.insert(make_pair("asd","bbb"));
 s.insert({"asd","asd3?"});
+
+auto itr  = SET.find(k);
+itr = prev(itr);
+itr = next(itr);
