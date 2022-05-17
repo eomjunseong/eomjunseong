@@ -1,0 +1,28 @@
+package practice;
+
+
+class Box<T>{
+    T obj;
+    public void set(T o){
+        this.obj = o;
+    }
+    public T get(){
+        return obj;
+    }
+}
+
+class UnBoxer{
+    public static <T> T openBox(Box<T> box){
+        return box.get();
+    }
+}
+public class TestTest {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+        box.set("My Generic");
+//        String str= UnBoxer.openBox(box);
+        String str= UnBoxer.<String>openBox(box);
+        System.out.println(str);
+
+    }
+}

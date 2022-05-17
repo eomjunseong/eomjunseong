@@ -1,0 +1,106 @@
+*제네릭
+- Box<T> / Box<Apple>
+- T: 타입 매개변수
+- Apple : 타입변수
+- 'Box<Apple>' 자체 == 매개변수화 타입 == 제네릭타입 
+- Box<Apple> aBox = new Box<>();//OK
+- Box<Box<Box<Apple>>> box = new Box<>(); 가능; // box.get().get().get();....
+
+*extends 
+- class Box<T extends Number>{....} // number||이를 상속하는 클래스만 올 수 있음.
+---Box<Integer> O Box<Person> X
+- Number클래스의 메소드를 쓸 수 있다. 
+---ex)
+class Box<T extends Number>{
+    private T ob;
+    .....
+    public int toIntValue(){
+        return on.intValue();//Number의 메소드임
+    }
+}
+- 인터페이스도 가능 하다. 
+---ex)class Box<T extends Eatable>{....} //interfate Eatable{public String eat();}// eat() 사용 가능 의미함 
+- 동시적 제한도 가능 class Box<T extends Number&Eatable>{...}
+
+-static 유무에 관계없이 메서드에 관해서도 제네릭 가능
+--ex) public static <T> Box<T> makeBox(T o){...};
+----Box<T>: 반환형 의미 
+-----앞의 <T> : 제네릭 메소드 의미, 즉 빼면 안됨 
+
+
+
+- 제네릭은 전달되는 인자를 보고서 타입을 결정할 수 도 있다. 
+--ex) Box<String> sBox = BoxFacotry.makeBox("hi hi hi");//가능.... 
+--ex) Box<Double> sBox = BoxFacotry.makeBox(3.14);//가능.... 
+--참고코드
+String str= UnBoxer.openBox(box);// 생략도 가능하다. box:Box<String>
+String str= UnBoxer.<String>openBox(box);
+
+
+**클래스
+-- class Box<T exntends Number>{
+
+}
+
+**메서드
+--public static <T extends Number> T openBox(Box<T> box){
+    box.get().intValue(); //OK
+}
+
+
+**상속
+Box<Number> box = new Box<Integer>();// X 
+Box<Number> box = new Box<Number>();// O 
+Box<Object> box = new Box<String>(); //X 
+Box<String> box = new SteelBox<String>();//O     class SteelBox<T> exntends Box<T>{...}
+
+
+*타겟 타입(유추)
+Box<Integer> box = EmptyBocFactory.<Integer>makeBox();
+Box<Integer> box = EmptyBocFactory.makeBox(); // 가능,, 유추함 
+
+*와일드 카드 <?>
+public static void peekBox(Box<?> box){} //와일드 카드
+public static <T> void peekBox(Box<T> box){} //제네릭메소드 
+
+
+
+*와일드 카드를 쓰는 이유? :
+A : 하한 상한 설정 가능,
+Q : 하한 상한이 왜 필요하지?
+A : 매개변수로 (Box<Object> box)를 두어 Box<Integer>, Box<String>... 등을 받는다고 가정하면
+A : Box<Object> <= Box<Integer> : 와 같은 상속관계가 성립하지 않는다(제네릭 특성)
+A : 그래서 와인드 카드 등장 . ........ "?"!!!!! 
+
+*와일드카드(상한)
+-(Box<? extends Number> box) 가 매개변수라면,
+- box는 Box<T> 인스턴스를 참조하는 참조변수다. 
+- Box<T>인스턴스의 T는 Number 또는 이를 상속하는 하위 클래스이어야함 
+---애초에 (Box<Number> box)이런 식으로 받으면 안되나요? :  불가능 
+--- 그래서 (Box<? extends Number> box) 이런식으로 제한을 줘서 사용 
+
+*와일드카드(하한)
+-(Box<? super Integer> box)
+-- Box<Integer> box, Box<Number> box, Box<Object> box만 올 수 있음.
+
+*언제 와일드 카드에 제한을 거는가? 
+A : Box<T>의 T를 Number 또는 Number를 직간접적으로 상속하는 클래스로 제한하기 위한것. 
+A : 이는 전달 되는 대상을 제한하는 것, 자체로 안정성을 높이는 기능을 함.
+
+
+* (Box<? extends Toy> box)  : 꺼내는 작업만 허용 의미 
+- box.get() OK
+- box.set() x
+//class Car extends Toy{}, class Robot extends toy{} 
+//Box<Robot> tmp -- > 대입 생각 
+// Toy t = box.get(); O
+// box.set(new Toy()); X 
+ 
+* (Box<? super Toy> box)  : 넣는 작업만 허용 의미 
+- box.get() X
+- box.set() OK
+// class plastic{}, class Toy extends plastic{};
+//Box<plastic> box --> 대입생각
+// Toy y = box.get(); X
+// box.set(new Toy()); O 
+
