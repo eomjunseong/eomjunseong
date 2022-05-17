@@ -1,0 +1,44 @@
+*.length();//배열? length 그냥 사용(인스턴스 변수임) 
+
+* == 참조값 비교 
+* substring(int beginIdx); 
+* substring(int beginIdx,int endIdx);  --> String 반환 
+
+String str = "abcdefg";
+str.substring(2); //"cdefg"
+str.subString(2,4); //"cd" 
+
+*boolean equals(Object obj) ; 
+*int compareTo(String anotherString);//interface Comparable 
+*int compareToIgnoreCase(String str);
+
+//값을 문자열로 바꿈 //String 클래스 안에 존재 
+*static String valueOf(boolean b);
+*static String valueOf(char b);
+*static String valueOf(int b);
+*static String valueOf(double b);
+
+
+* a+b --> a.concat(b) 
+
+*StringBuilder //String 과 달리 문자 +- 가능
+-String(String str) // str저장 +추가 16개의 문자 공간 
+-String(int capacity) // 도 가능, 부족시 자동으로 늘림 
+//sb.append(" ") -->sb 자체에도 반영 + 주소값 반환
+-public StringBuilder append(int i); 
+-public StringBuilder delete(int start,int end); // s부터 e이전까지의 내용을 삭제 
+-public StringBuilder insert(int offset,String str); // offset위치에 str의 문자열로 대체 
+-public StringBuilder replace(int start, int end , String str); // s부터 e인전까지의 내용을 str로 대체 
+-public StringBuilder reverse(); // 문자열 뒤집음 
+-public String substring(int start,int end); // s에서 e 이전까지 String인스턴스 생성및 반환 
+-public String toString(); // String 인스턴스 생성 및 반환 
+ 
+ *StringBuilder VS StringBuffer 
+ - StringBuilder : 빠름/ 멀티스레드 불안전
+ - StringBuffer : 느림/멀티스레드 안전 
+
+ *public String replace("-","")//str = str.replace("-", ""); 다시 str에 할당해야 반영됨  "2018-03-02"-->"20180302"
+
+ * public String toLowerCase(); -->  str=str.toLowerCase 해야 반영
+
+

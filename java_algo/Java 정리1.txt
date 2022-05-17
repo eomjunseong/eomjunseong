@@ -1,0 +1,117 @@
+* static
+-클래스 메소드는, 클래스 변수, 클래스 메소드에만 접근이 가능 하다, 
+- 클래스 메소드  : 인스턴스 변수(필드) 에 접근 불가 
+
+*static{
+	//클래스 로딩시 한번만 실행이 되는 영역 ; 
+}
+*static import 
+-ex:	import static java.lang.Math.*; -->Math.PI 대신 그냥 PI로 사용 가능 //굳이?
+
+* == : 참조변수의 참조 값 비교 : 걍 주소 비교라고 생각
+
+*public String toString();
+
+*%d , %f, %c, %s 
+
+*Scanner ; 
+{
+    String source ="1 3 5";
+    Scanner sc = new Scanner(source); 
+    int num1 = nextInt(); //1 
+    int num2 = nextInt(); //3 
+    int num3 = nextInt(); //5 
+
+}
+
+*next(), nextLine() 차이 // 스페이스, 엔터 차이 
+*nextInt() //버퍼에 \n남김 --> 후에 nextLine();// 하면 문제~
+*next() //버퍼에 \n남김 
+**scan.nextLine() 한번 줘서 버퍼 비움 
+
+*자바는 배열도 인스턴스화
+*int[] arr= new int[3]; //OK
+*int[] arr= new int[]{1,2,3}; //OK
+*int[] arr= {1,2,3}; //OK
+*int[] arr= new int[3]{1,2,3};//XXXXXXXXXX
+*int[] arr = new int[3]; // {0,0,0};
+*String[] arr = new String[3];//{null,null,null}
+*Arrays.fill(arr,1); // {0,0,0}->{1,1,1};
+*Arrays.fill(arr,1,3,7); // {0,0,0,0,0,0,0}->{0,7,7,0,0,0,0}; //1에서 3전까지 7로 
+*System.arraycopy(ar1,0,ar2,3,4); //ar1을 0에서 부터 4개를 , ar2의 3에 부분 복사 대입, 
+
+*int[][] arr = new int[3][4];
+**arr[1] = new int[7]; // 가능 
+
+*int[][] a2 = new int[][]{
+            {1,2,3},{4,5,6},{7,8,9}
+        }; // 가능 [3][3] 입력시 오류 
+*상위 == 기초 == 부모
+*하위 == 유도 == 자식
+* 상위 <== 하위 (UML)
+
+//THIS VS SUPER 
+*AAA(int a, int b)/ AAA(int a){this(a,0)} :  오버로딩된 다른 생성자 호출하는,,,
+*super(----) // 상위 클래스의 생성자 호출 // 하위클래스에서 제일먼저 super(---)가 나와야함      
+*public void x() {super.x() ; super.xx();} //상위 클래스 메소드 호출
+*super.x : 와 같이 상위 클래스 변수도 ㅇㅇ 
+
+*상위 클래스의 static 변수,메서드 --> 하위클래스명으로 접근 가능 
+
+*IS-A : 상속 (모바일폰, 스마트폰)
+*HAS-A : 포함
+
+*인스턴스변수/클래스변수 : 둘다 오버라이딩X 
+
+
+*tempCa instanceof CAKE ; --> boolean // CAKE이 상위 클래스 인지 확인
+
+*상속을 하는 이유? 재활용?X ----> 연관된 클래스들에 공통적인 규약을 정의가 목적
+*자바가 결국 직간접적으로 Object클래스를 상속하는 이유? 자바의 모든 인스턴스에 공통된 기준 및 규약을 적용하기 위함
+
+
+*final 클래스 : 상속 X  ex)String Class : String은 상속 불가능 
+*final 메서드 : 오버라이딩 X 
+
+*상속과 구현 동시가능 
+*다중 상속 X, 다중 구현O
+*인터페이스간 상속 O,instanceof O 
+
+*인터페이스
+- 반드시 선언과 동시에 값을 초기화 해야함
+- 모든 변수는 public static final으로 간주됨-->sout(Printable.PAPER_WIDTH);// 가능하다는 말
+- 추상메서드 : void print(Str doc); // {}X 
+- 인터페이스를 구현 하는 클래스는 '추상메서드'를 구현해야함 
+- 디폴트메서드 : default void printCMYK(Str doc){}; // {}O + default; //자체로 완전함 -> 구현 안해도됨 
+- static메서드 : static void printLine(Str doc){sout(doc)}; // 완전함, 인터페이스.printLine OK, 클래싀 Static메서드와 호출방법 동일 
+--마커인터페이스 interface Upper{}; interface Lower{}; 텅빈애들 
+--ex)if(doc instanceof Upper)....
+
+*추상클래스 : 하나 이상의 추상메서드를 가져야함, 즉 '상속'받은 후, 오버라이딩해서 씀. //굳이 안쓸거같은데 절대...
+public abstract class House{
+    public void m1(){
+        sout():
+    }
+    public abstract void methodTwo();//추상메서드 
+}
+
+
+*예외
+- Object 클래스 제외 최상위 예외클래스 : Throwable // catch(Throwable e) 
+- main 조차 예외를 처리 X? ->JVM이 처리 
+- 둘이상의 예외 처리 catch(a|b e){};  
+- e.getMessage()//예외원인을 담고 있는 문자열 반환
+- e.printStackTrace() // 예외가 발생한 위치와 호출된 메소드의 정보를 출력 
+- public void md2() throws IOException,IndexOutofBoundsException{} // IOException,IndexOutofBoundsException 발생시 호출한 곳으로 넘김 
+--try{}catch(){}finally{ writer.close();같은거,,,, 무조건 실행 되는 영역, try{}catch(){} 가능  }
+--try(BufferedWriter writer = Files.newBufferedWriter(file))catch{} //자동 close; 
+--try(resource1;resource2;)catch(){}가능 
+
+--내가정의한 예외
+--class ReadAgeException extends Exception{ 
+    public ReadAgeException(){//생성자 
+        super("유효값X")
+    } // -> e.getMessage// 하면 줄력됨 
+}
+--public int aa(){if(age<0) throw new ReadAgeException();} 
+--try{aa()}catch(ReadAgeException e ){}

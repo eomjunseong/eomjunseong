@@ -1,0 +1,5 @@
+DFS : stack
+BFS : queue 
+
+
+DFS : 재귀 구현시 출력 먼저, (자식 넣기 전에)
