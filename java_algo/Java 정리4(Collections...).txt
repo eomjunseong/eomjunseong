@@ -1,0 +1,100 @@
+*interface Collection<E> extends Iterable<E> {} // Map<K,V> 은 Iterable 구현 X : Collections 상속 아니라,
+- List<String> list = new LinkedList<>();
+- Iterator<String> itr = list.iterator(); 
+
+*Iterator<E> (Interface Iterable<E>를 구현해야함 ....)
+- E        next();   //다음 인스턴스의 참조 값을 반환
+- boolean  hasNext();// 'next 메소드 호출시' 참조값 반환 가능 여부 
+- void     remove(); // next 메소드 호출을 통해 반환했던 인스턴스 삭제 
+
+*public ListIterator<E> listIterator()
+- List<E>를 구현하는 클래스만 
+- next(), hasNext(),remove()
+- previous()//next 반대
+- hasPrevious() 
+- add //인스턴스 추가 
+- set //인스턴스 변경 
+
+
+add()
+get()
+remove()
+size()
+
+*List<String> list = Arrays.asList("A","B","C"); //선언과 동시에 초기화 못해서, 이렇게,,
+
+*ArrayList<E>
+- 범위 넘어가면, 큰거 생성후 복사함
+- 삭제 과정에서 많은 연산이 필요/삭제 느리다.
+- 참조가 빠르다
+
+*LikedList<E>
+- 참조 느리다/순차적으로 확인 
+- 저장공간 확장 간편
+- 삭제 과정 단순 
+
+*Set<E>
+- 순서 유지X
+- 중복 X 
+
+* 동일 인스턴스 기준? 가 오버라이딩 되어야함 
+- 1차 -> 2차 equals 비교 
+- public boolean equals(Object obj); (2차)
+- public int hashCode(); (1차)
+--- 특별한 경우가 아니라면 이런식으로 하자 
+--- @Override
+--- public int hashCode(){
+---     return Object.hash(model,color); // 변수 넣음 
+--- }
+
+*Set에서 인스턴스 비교 ..... 
+*interface Clonable -> public int compareTo(Object o) 
+*interface Comparator<T> -> int compare(T o1, T o2); //새로운 룰 적용시 만듬 
+--> public TreeSet(Comparator<? super E> comparator)  
+--> TreeSet(new ....() ); //생성할때 매개변수로 바로줌 
+// list는??? Collections.sort(list,new ()....) 여기
+
+*TreeSet<E>  // 순서 존재 
+*HashSet<E> 
+
+*Queue<E> 
+- Interface 임  
+- Queue<String> que = new LinkedList<>(); 
+-인스턴스 없거나, 공간 부족 : 예외 발생 
+-- boolean add(E e);//넣기 
+-- E remove(); //꺼내기
+-- E element(); //확인 - 삭제X
+
+-동일 상황에서 예외X, null || false 반환 
+-- boolean offer();//공간 없으면 false
+-- E poll(); //꺼내기, 없으면 null
+-- E peek();// 확인, 없으면 null 
+
+*class Stack<E> extends Vector<E>{} 잘 안씀 
+*interface Deque<E> extends Queue<E>
+** Deque<String> deq = new LinkedList<>(); OK
+** Deque<String> deq = new ArrayDeque<>(); OK
+- boolean offerFirst(); //공간 부족 false
+- E pollFirst(); //null
+- E peekFirst(); //null
+- boolean offerLast(); //false
+- E pollLast(); //null
+- E peekLast(); //null
+
+*Map<K,V> 
+- interface 
+- public Set<K> KeySet(); 존재 
+- 
+*HashMap<K,V>
+*TreeMap<K,v>//Key로 정렬 
+- V get(K); //없으면 null
+- put(k,v);
+- V remove(k); //없으면 null 반환, 있으면 삭제하는 value 반환 
+
+
+*Collections
+- public static <T extends Comparable<? super T>> void sort(List<T> list);
+
+
+
+    

@@ -10,14 +10,20 @@
 
 
 
-*OBJECT!!!
+*OBJECT!!!//java.lang 
 - protected void finalize() throws Throwable{};// 가비지컬렉션...
 - public boolean equals(Obeject obj){if(this.num==((INum)obj).num).....};//내용비교하라고 만들어둠
 - protected Object clone() throws CloneNotSupportedException{};
 ---public으로 확장 가능 반환형 변경가능 단, return (형변환)OBj 필수
 ---이것만 쓰면 단순히 인스턴스의 복사본을 만들어 참조값만 반환(알맹이는 같은걸 보고있음)// 해결책 상기해.
 - interface Clonable{}//마커인터페이스 //'구현(할건없지만)' 되야  clon(Object...)e가능하다 의미함 
-
+**Objects // java.util.
+- public int hashCode(); // HashSet 에서 객체비교시 설정필요..
+--- 특별한 경우가 아니라면 이런식으로 하자 
+--- @Override
+--- public int hashCode(){
+---     return Object.hash(model,color); // 변수 넣음 
+--- }
 
 *WRAPPER
 - Integer i = new Integer(1); // toString() 오버라이딩하고있음

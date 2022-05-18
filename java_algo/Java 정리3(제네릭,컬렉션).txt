@@ -88,11 +88,13 @@ A : Box<T>의 T를 Number 또는 Number를 직간접적으로 상속하는 클�
 A : 이는 전달 되는 대상을 제한하는 것, 자체로 안정성을 높이는 기능을 함.
 
 
-* (Box<? extends Toy> box)  : 꺼내는 작업만 허용 의미 
+* (Box<? extends Toy> box)  : 꺼내는 작업만 허용 의미  //e 빼기
 - box.get() OK
 - box.set() x
-//class Car extends Toy{}, class Robot extends toy{} 
-//Box<Robot> tmp -- > 대입 생각 
+//class Toy{} 
+//class Car extends Toy{}, 
+//class Robot extends toy{} 
+//xBox<Robot> tmp -- > 대입 생각 
 // Toy t = box.get(); O
 // box.set(new Toy()); X 
  
