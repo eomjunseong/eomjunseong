@@ -1,0 +1,46 @@
+@FunctionalInterface
+public interface Predicate<T>{
+    boolean test(T t);
+}
+
+
+
+*Predicate<T>           
+- boolean test(T t); --> list.removeIf(s->s.doubleValue()<0.0);
+
+- IntPredicate (제네릭 X)
+- boolean test(int t);
+- DoublePredicate (제네릭 X)
+- boolean test(double t);
+- BiPredicate<T t, U u>(제네릭O)
+- boolean test(T t, U u)
+
+
+
+*Supplier<T>
+- T get();
+
+- IntSupplier (제네릭 X)
+- getAsInt();
+
+*Consumer<T>
+- void accept(T t);
+
+- IntConsumver
+- void accept(int value)
+- ObjIntConsumer<T> 
+- void accept(T t, int value);
+- ObjDoubleConsumer<T> 
+- void accept(T t, double value);
+- BiConsumber<T,U> 
+- void accept(T t,U u);
+
+
+*Function<T,R>
+- R apply(T t);
+
+- IntToDoubleFunction 
+- double applyAsDouble(int value);
+- DoubleToIntFunction
+- int applyAsInt(double v);
+.... 뭐 많음... 당장 굳이....

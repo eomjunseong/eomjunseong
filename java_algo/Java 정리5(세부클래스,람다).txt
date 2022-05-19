@@ -1,0 +1,133 @@
+*열거형
+--enum 도 사실상 하나의 클래스 
+-- tostring OK
+-- private 생성자 OK 
+enum Scale {
+    DO, RE, MI, FA, SO, RA, TI
+}
+public static void main(String[] args) 
+    Scale sc = Scale.DO;
+    System.out.println(sc); //DO 출력  
+
+    switch(sc) {
+        case DO:
+            System.out.println("도~ ");
+            break;
+
+
+
+
+*가변인자 선언(ex. hash....)
+- 인자의 수 제한 X
+- ex) String... a --> 
+    showAll(new String[]{"Box"}); //OK
+    showAll("Box", "Toy");        //OK
+- ex) String[] vargs 도 가능 , 
+-----showAll(new String[]{"Box"});//형태로 줘야함
+----- showAll({"Box"});           //XX
+
+
+
+
+*어노테이션
+@SuppressWarnings("a") //deprecation 무시 방법 
+
+
+
+*네스티드 클래스
+1) static 네스티드 클래스 static class aa{};
+Outer.NestedClass nst1 = new Outer.NestedClass(); // 이런식으로 생성해야 이후에 쓸 수 있음.
+- 외부 클래스 생성과는 무관. 당연 static 변수에만 접근 가능 
+
+2) non-static 네스티드 클래스(이너클래스/정의되는 위치,특성에 따라 3가지)
+1. 멤버 클래스(변수나 메소드 와 동일 위치)
+    - 언제 사용? 클래스 정의를 숨길때(private class 가능 ) 
+    - ex iterator()..... 
+    - Outer 인스턴스 없이 생성 불가능 
+    - Outer o1 = new Outer();
+    - Outer.Member o1m1 = o1.new Member();
+    - Outer.Member o1m2 = o1.new Member(); //위와 같이 o1 공유 
+
+2. 로컬 클래스(중괄호 내에, 특히 메소드 내에 정의)
+
+3. 익명 클래스 
+    - new (interface){@Override}; // 형태
+    ex public Printable getPrinter(){
+            return new Printable() {
+                @Override
+                public void print() {
+                    System.out.println(con);
+                }
+            }; //  ";" 가 꼭들어가야해~
+        }
+
+    ex Comparator<String> comp = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.length()-o2.length();
+            }
+        }; // ";"가 꼭 들어가야함 
+
+*익명클래스 vs 람다
+-익명
+Printable prn = new Printable(){
+    @Override
+    public void print(String s){
+        sout(s);
+    }
+}
+-람다 
+ex1. Printable prn = (s)->{sout(s)};
+
+ex2. 
+interface Printable {
+    void print(String s);
+}
+
+class Lambda4 {
+    public static void ShowString(Printable p, String s) {
+        p.print(s);
+    }
+
+    public static void main(String[] args) {
+        ShowString((s) -> { System.out.println(s); }, "What is Lambda?");
+    }
+}
+
+
+*함수형 인터페이스(추상메소드가 1개인거)
+
+*(Return X 매개변수 O)
+interface Printable {
+    void print(String s);    // 매개변수 하나, 반환형 void
+}
+public static void main(String[] args) {
+    Printable p;
+
+    p = (String s)->{System.out.println(s);};
+    p.print("Lambda exp one.");
+
+    p = (String s) -> System.out.println(s);
+    p.print("Lambda exp two.");
+    
+    p = (s)-> System.out.println(s);    
+    p.print("Lambda exp three.");
+
+    // 매개변수 소괄호 생략(하나일때만 가능 , 두개 이상 괄호 필수 )
+    p = s -> System.out.println(s);    // 매개변수 소괄호 생략
+    p.print("Lambda exp four.");
+}
+
+
+*(Return O 매개변수 O)
+- {return ...} 에서 'return' 직접 입력하면, {}생략 X
+- (a,b) -> a+b; 가능 // return a+b 의미
+- s-> s.length(); // int 반환하나보다~ 예상 가능
+
+*(매개변수 X)
+Generator gen = () -> {
+    Random rand = new Random();
+    return rand.nextInt(50);
+};  // 두줄 이상이면 반드시 소괄호, 매개 없어도 () 입력
+
+

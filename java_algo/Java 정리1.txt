@@ -77,9 +77,14 @@
 *다중 상속 X, 다중 구현O
 *인터페이스간 상속 O,instanceof O 
 
+
+//인터페이스 VS 추상클래스 
+https://velog.io/@new_wisdom/Java-%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4
+
 *인터페이스
-- 반드시 선언과 동시에 값을 초기화 해야함
 - 모든 변수는 public static final으로 간주됨-->sout(Printable.PAPER_WIDTH);// 가능하다는 말
+- 그래서, 반드시 선언과 동시에 값을 초기화 해야함
+- 생략된, 메서드는 public abtract
 - 추상메서드 : void print(Str doc); // {}X 
 - 인터페이스를 구현 하는 클래스는 '추상메서드'를 구현해야함 
 - 디폴트메서드 : default void printCMYK(Str doc){}; // {}O + default; //자체로 완전함 -> 구현 안해도됨 
@@ -94,6 +99,7 @@ public abstract class House{
     }
     public abstract void methodTwo();//추상메서드 
 }
+
 
 
 *예외

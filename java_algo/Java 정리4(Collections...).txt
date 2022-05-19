@@ -44,7 +44,9 @@ size()
 --- 특별한 경우가 아니라면 이런식으로 하자 
 --- @Override
 --- public int hashCode(){
----     return Object.hash(model,color); // 변수 넣음 
+---     return Objects.hash(model,color); //가변인자,,,(정리 5)
+        // 변수 넣음 
+        // Ojects!=Object
 --- }
 
 *Set에서 인스턴스 비교 ..... 
@@ -92,9 +94,22 @@ size()
 - V remove(k); //없으면 null 반환, 있으면 삭제하는 value 반환 
 
 
-*Collections
+*Collections  // Java 정리 2 에 Arrays 와 비교 공부 
+- class Car implements Comparable<Car>{} 
+- class ECar extends Car{}
+- List<Ecar> list;
+- Collections.sort(list); //OK
 - public static <T extends Comparable<? super T>> void sort(List<T> list);
 
+//이것도 존재 
++ public static <T> void sort(List<T> list, Comparator<? super T> c)
+++ class Car{}; class ECar extends Car{};
+++ List<Ecar> list; , class Comp implements Comparator<Car>{}
+++ Collections.sort(list,new Comp()); //가능
 
+- public static <T> int binarySearch(List<? super Comparable<? super T>> list, T key)
+- public static <T> int binarySearch(List<? super Comparable<? super T>> list, T key, Comparator<? supert T> c) 
 
-    
+- dest : 넣기 , src : 꺼내기
+- public static <T> void copy(List<? super T> dest, List<? extends T> src);
+
