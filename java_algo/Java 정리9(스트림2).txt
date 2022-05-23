@@ -1,0 +1,67 @@
+*of
+    ex1)
+        List<String> sl = Arrays.asList("Toy","Toy2","Toy2","Toy3");        
+        Stream.of(sl)
+            .forEach(s-> System.out.print(s+ "-"));
+        //[Toy, Toy2, Toy2, Toy3]- 
+        //Collection 인스턴스 그 자체로다가 사용해 벌임 
+    ex2)
+        Stream.of(11,22,33,44)
+            .forEach(n-> System.out.print(n+1+"- "));
+        //12- 23- 34- 45- 
+    ex3)
+        IntStream is3 = IntStream.of(7,3,5); //7   3   5
+        IntStream is2 = IntStream.range(5,8);// 5 6 7
+        IntStream is1 = IntStream.rangeClosed(5,8); 5 6 7 8
+
+*parallel() : 이미 생성된 스트림을 병렬 스트림으로 만듬
+
+*concat : 합침 
+    Stream<String> s1 = Stream.of("cc1","cc2","cc3");
+    Stream<String> s2 = Stream.of("cc4","cc5","cc6");
+    Stream<String> s3 = Stream.concat(s1,s2);
+
+
+*flatMap!(흠흠 ㅎㅎ)
+- <R> Stream<R> flatMap(Function<T, Stream<R>> mapper);
+--------------------------------Stream<R> apply(T t);
+    class FlatMapStream {
+        public static void main(String[] args) {
+            Stream<String> ss1 = Stream.of("MY_AGE", "YOUR_LIFE");
+            Stream<String> ss2 = ss1.flatMap(s -> Arrays.stream(s.split("_")));
+            ss2.forEach(s -> System.out.print(s + "\t"));
+        }
+    }//MY         AGE         YOUR       LIFE
+
+
+*루핑 : 스트림을 이루는 모든 데이터 각각을 대상으로 특정 연산을 진행하는 행위르 가리켜 루핑이함
+- Stream<T> peek(Consumer<? super T> action ) // Stream<T> 의 메소드를
+- IntStream peek(IntConsumer action ) // IntStream 메소드 
+- 최종연산이 아니기때문에, 반환형이 void가 아님, 그래서
+- 최종연산 안하면....
+
+
+
+*최종연산
+sum,count,average,min,max -> Int,Long,Double Stream에만 존재
+[IntStream]
+- int sum()
+- long count()
+- OptionalDouble average()  --> .average().ifPresent(s->System.out::Println)
+- OPtionalInt min()                                   -----consumer T: void accept(T t) 
+- OptionalInt max()
+
+[Stream<T>]
+- boolean allMatch(Predicate<? super T> predicate)  --bool test(T t)
+- boolean anyMatch(Predicate<? super T> predicate)
+- boolean noneMatch(Predicate<? super T> predicate)
+
+ex)boolean b = IntStream.of(1, 2, 3, 4, 5)
+                .allMatch(n -> n%2 == 0);
+
+[IntStream]
+- boolean allMatch(IntPredicate predicate)
+- boolean anyMatch(IntPredicate predicate)
+- boolean noneMatch(IntPredicate predicate)
+
+

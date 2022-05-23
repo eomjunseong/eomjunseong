@@ -1,0 +1,70 @@
+*중간연산/최종연산
+-Instream filter(IntPredicate predicate) //bool test
+
+IntStream stm1 = Arrays.stream(arr);
+IntStream stm2 = stm1.filter(n->n%2==1);//중간 연산
+int sum = stm2.sum();//최종연산
+
+1)생성방법
+- 배열 및 켈렉션 인스턴스 대상으로 스트림 생성 
+2)중간 연산의 종류와 내용
+- 필터링 및 맵핑 관련연산
+3)최종 연산의 종류와 내용
+- 리덕션 관련 연산
+
+1)생성방법
+    - public static <T> Stream<T> stream(T[] array); //Arrays 클래스에 정의 
+    - public static <T> Stream<T> stream(T[] array, int start, int end); //s~e-1; 
+
+    *배열로 스트림 생성 
+    - Stream<String> s = Arrays.stream(names); (생성)
+
+    *컬렉션으로 스트림 생성 
+    - List<string> list=.....  //// list.stream() (생성)
+
+
+    *아하!
+    interface Iterable<T>에
+    default void forEach(Consumer<? super T>action){
+        for(T t : this) action.accept(t);
+    }있음 //Collection<E>가 이를 상속 -> 그래서 list.forEach() ㅇㅇ
+    but
+    Stream 클래스안에 똑같은 forEach가 존재 ㅇㅇ // 최종연산에서 이것을 쓰는것임
+
+
+2)컬렉션/배열 공통 기능
+    -1) filter 필터링
+        Stream<T> filter(Predicate<? super T> predicate)  //Stream<T>안에존재
+        --------------------------------------boolean test(T t)
+
+    -2) map 맵핑
+        //ex) aaa bbbb ccccc -> 3 4 5 
+        //Stream<T>에존재, Optional과 다름 
+        <R> Stream<R> map(Function<? super T, ? extends R> mapper) 
+        --------------------------------------R apply(T t)---------
+        //오토 언/박싱이 진행 되기 때문에, 기본형도 제공 
+        ex) IntStream mapToInt(ToIntFunction<? super T> mapper)
+        --------------------------------------int apply(T t)-------
+
+
+3)리덕션과 reduce 메소드 
+    * reduce
+    - T reduce(T identity, BinaryOperartor<T> accumlator) //Stream<T>에 존재
+    ------------------------- T apply(T t1,T t2)--------------------
+    public static void main(String[] args) {
+        List<String> ls = Arrays.asList("Box","Simple","Complex","Robot");
+
+        BinaryOperator<String> lc = (s1,s2)->{
+           return s1.length()>s2.length()?s1:s2;
+        } ;
+
+        String str = ls.stream().reduce("",lc); 
+        //reduce의 첫번째 인자의 의미는?
+        //1) stream 이 비었을때 반환
+        //2) stream이 안비어있으면 "" 내용 포함해서 연산-> BinaryOperartor<T> accumlator : T apply(T t1,T t2)
+        System.out.println(str);
+    }
+
+    *parallelStream 
+    //병렬 처리 
+    // 연산의 단계를 줄이는게 핵심....(연산의 횟수를 줄이는게 핵심이 아니라...)-> 라고 하는데 흠....

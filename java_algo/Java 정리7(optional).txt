@@ -1,0 +1,44 @@
+*Optional //java.util, 일종의 래퍼클래스 느낌 
+public final class Optional<T> extends Object{
+    private final T value; //인스터를 저장함  
+    ....하는 형태 
+    os.get();// value 반환
+}
+
+*생성
+Optional<String> opt = Optional.of(new String("a"));
+Optional<String> opt = Optional.ofNullable(new String("a")); //null을 저장 
+
+-if(opt.isPresent()){} //가능
+-opt.ifPresent(s->System.out::Println)// 가능 
+-ifPresent : Optional인스턴스가 저장하고 있는 내용물이 잇으면 이를 인자로 전달
+--public void ifPresent(Consumer<? super T> consumer){}//void accept(T t)
+
+
+*map 
+//Optional<U>로 싸서 반환하는게 포인트
+//Function<? super T,? extends U> -> U apply(T t){};
+public <U> Optional<U> map(Function<? super T,? extends U> mapper);
+// T 는 Option<T> 에서 정해짐.
+-> Option<String>..... 이면 T는 String
+-> Optional<String> os2 = os1.map(s->s.toUpperCase()) ;  
+---->Optional<String> os2 = os1.<String>map(s->s.toUpperCase()) ; 이라고 안해도, uppercase 반환값 보고 컴파일러가 U를 String으로 결정
+
+
+
++
+Optional<String> o = Optional.empty(); // 빈 Optional 생성 반환 
+//==Optinoal<String> o = Optional.ofNullable(null);
+
++//map 안에서 반환하는게 null 이면.....
+//orElse() 가 get 기능도함. 
+//orElse() 쓰면 String str = o.map().orElse()
+//안쓰면 Optional<String> o1 = 0.map();
+String s1 = os1.map(s->s)
+               .orElse("Empty");
+
+
+
+*map vs flatMap
+map : Optional 인스턴스 반환 자동
+flatMap : 수동 
