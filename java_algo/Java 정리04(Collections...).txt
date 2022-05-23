@@ -18,7 +18,7 @@
 
 add()
 get()
-remove()
+remove() //삭제값 반환함 
 size()
 
 *List<String> list = Arrays.asList("A","B","C"); //선언과 동시에 초기화 못해서, 이렇게,,
@@ -27,6 +27,7 @@ size()
 - 범위 넘어가면, 큰거 생성후 복사함
 - 삭제 과정에서 많은 연산이 필요/삭제 느리다.
 - 참조가 빠르다
+
 
 *LikedList<E>
 - 참조 느리다/순차적으로 확인 

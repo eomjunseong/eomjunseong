@@ -1,0 +1,18 @@
+Collectors.toList() //return list.stream().filter(s->s%2==0).collect(Collectors.toList());
+list.stream().map(s->s*2).collect(Collectors.toList());
+
+Stream.concat(s1,s2).collect(Collectors.toList());
+
+.toArray(String::new)?
+
+public String[] makeUniqueNameArray(List<String> names) {
+    return names.stream()
+            .distinct() // 중복을 제거합니다.
+            .sorted() // 정렬합니다.
+            .toArray(String[]::new); // String 배열로 최종 연산을 진행합니다.
+}
+
+.filter(n -> n.startsWith("김")) 
+
+
+P. 748

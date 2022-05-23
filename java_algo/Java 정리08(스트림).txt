@@ -47,7 +47,7 @@ int sum = stm2.sum();//최종연산
         --------------------------------------int apply(T t)-------
 
 
-3)리덕션과 reduce 메소드 
+3)리덕션과 reduce 메소드 (최종연산임)
     * reduce
     - T reduce(T identity, BinaryOperartor<T> accumlator) //Stream<T>에 존재
     ------------------------- T apply(T t1,T t2)--------------------
@@ -68,3 +68,8 @@ int sum = stm2.sum();//최종연산
     *parallelStream 
     //병렬 처리 
     // 연산의 단계를 줄이는게 핵심....(연산의 횟수를 줄이는게 핵심이 아니라...)-> 라고 하는데 흠....
+
+
+
+*.collect(Collectors.toList()); // 최종적으로 리스트의 형태로 만듬.
+*.count(); //갯수 리턴

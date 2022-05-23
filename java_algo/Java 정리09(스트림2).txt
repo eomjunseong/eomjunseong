@@ -49,7 +49,7 @@ sum,count,average,min,max -> Int,Long,Double Stream에만 존재
 - long count()
 - OptionalDouble average()  --> .average().ifPresent(s->System.out::Println)
 - OPtionalInt min()                                   -----consumer T: void accept(T t) 
-- OptionalInt max()
+- OptionalInt max() -->getAsInt();
 
 [Stream<T>]
 - boolean allMatch(Predicate<? super T> predicate)  --bool test(T t)
