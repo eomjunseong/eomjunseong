@@ -1,0 +1,40 @@
+git config --global init.defaultBranch main //master ->main바뀐거 반영 
+git config --global user.name "eomjunseong"
+git config --global user.email "hi_man159@naver.com"
+git config --list //로확인
+
+git status 
+git add .
+git commit -m "001"
+git log // commit 확인 
+git reset --hard // 마지막 커밋상태로 
+git reset --hard fd8550e0d640a2b3a65ed41aed4474f547544fda  // 그 뒤에꺼는 다 날림
+* 다시 돌아가려면? A : 깃헙에서 복사학 
+git reset --hard fd8550 //이런식으로 재입력
+
+
+* 허브연결
+git remote add origin https://github.com/eomjunseong/gitpractice.git
+
+* remote 확인 
+git remote -v
+
+*변경사항 갖고오기
+git pull origin master 
+
+
+
+*.gitignore //gitignore.io 사이트
+*Octotree-GithubCodetree
+
+
+
+
+
+
+
+
+
+
+
+dir //cmd 명령창 
