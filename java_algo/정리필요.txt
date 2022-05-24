@@ -16,3 +16,15 @@ public String[] makeUniqueNameArray(List<String> names) {
 
 
 P. 748
+
+
+*String[]::new
+*예외 
+
+
+*Comparable/Comparator/equals/hashCode
+hash -> 동일기준 필요 -> Object(hashCode)+Object(equals)
+Tree -> 순서기준 필요 -> Comparable(compareTo)/ Comparator(compare(o1, o2)); 
+
+* List를 정렬할 때는 Collection.sort()를 사용해야하고, 
+* 배열을 정렬할 때는 Arrays.sort()를 사용해야 한다.

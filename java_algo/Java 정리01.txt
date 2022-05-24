@@ -121,3 +121,13 @@ public abstract class House{
 }
 --public int aa(){if(age<0) throw new ReadAgeException();} 
 --try{aa()}catch(ReadAgeException e ){}
+
+
+
+
+
+String[] arr = new String[]{"1","2"};
+List<String> l = Arrays.asList("1","2");       OK  // 반환이 List<T>임 
+List<String> l = Arrays.asList(arr);           OK 
+List<Integer> list = Arrays.asList(1,2,3,4,5); OK
+

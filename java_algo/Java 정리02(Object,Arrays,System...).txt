@@ -12,11 +12,22 @@
 
 *OBJECT!!!//java.lang 
 - protected void finalize() throws Throwable{};// 가비지컬렉션...
+
 - public boolean equals(Obeject obj){if(this.num==((INum)obj).num).....};//내용비교하라고 만들어둠
+
+- (interface Clonable{}//마커인터페이스 상속을 통해)'구현(할건없지만)' 되야  
+--clone(Object...)e가능하다 의미함 
 - protected Object clone() throws CloneNotSupportedException{};
 ---public으로 확장 가능 반환형 변경가능 단, return (형변환)OBj 필수
----이것만 쓰면 단순히 인스턴스의 복사본을 만들어 참조값만 반환(알맹이는 같은걸 보고있음)// 해결책 상기해.
-- interface Clonable{}//마커인터페이스 //'구현(할건없지만)' 되야  clon(Object...)e가능하다 의미함 
+---이것만 쓰면 단순히 인스턴스의 복사본을 만들어 참조값만 반환(알맹이는 같은걸 보고있음)
+// 해결책 상기해.
+--public int hashcode(); 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+
 **Objects // java.util.
 - public int hashCode(); // HashSet 에서 객체비교시 설정필요..
 --- 특별한 경우가 아니라면 이런식으로 하자 
@@ -26,12 +37,14 @@
 --- }
 
 *WRAPPER
+- int num = Integer.parseInt(str) //String to Int
+- String str = Integer.toString(num); //Int to String 
 - Integer i = new Integer(1); // toString() 오버라이딩하고있음
 - int k = i.intValue(); //언반싱 doubleValue()....
 - Integer.max(n1,n2);
 - Integer.min(n1,n2); 
-- Integer.toBinaryString(12)//String임
-- Integer.MAX_VALUE;
+- Integer.toBinaryString(12)//int 12 -> 이진수 String 으로 반환 
+- Integer.MAX_VALUE; 
 
 
 
@@ -61,7 +74,7 @@
 
 *interface Comparable{
     public int compareTo(Object o){
-
+            
     }
 }를 구현 하면, Arrays.sort() 가능
 

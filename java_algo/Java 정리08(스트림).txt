@@ -73,3 +73,5 @@ int sum = stm2.sum();//최종연산
 
 *.collect(Collectors.toList()); // 최종적으로 리스트의 형태로 만듬.
 *.count(); //갯수 리턴
+
+*A[] result = list.stream().toArray(A[]::new); 

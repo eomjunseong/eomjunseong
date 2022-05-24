@@ -1,4 +1,5 @@
-*interface Collection<E> extends Iterable<E> {} // Map<K,V> 은 Iterable 구현 X : Collections 상속 아니라,
+*interface Collection<E> extends Iterable<E> {} 
+// Map<K,V> 은 Iterable 구현 X : Collection 상속 아니라,
 - List<String> list = new LinkedList<>();
 - Iterator<String> itr = list.iterator(); 
 
@@ -51,7 +52,7 @@ size()
 --- }
 
 *Set에서 인스턴스 비교 ..... 
-*interface Clonable -> public int compareTo(Object o) 
+*interface Comparable -> public int compareTo(Object o) 
 *interface Comparator<T> -> int compare(T o1, T o2); //새로운 룰 적용시 만듬 
 --> public TreeSet(Comparator<? super E> comparator)  
 --> TreeSet(new ....() ); //생성할때 매개변수로 바로줌 
