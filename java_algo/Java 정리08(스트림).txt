@@ -15,6 +15,7 @@ int sum = stm2.sum();//최종연산
 1)생성방법
     - public static <T> Stream<T> stream(T[] array); //Arrays 클래스에 정의 
     - public static <T> Stream<T> stream(T[] array, int start, int end); //s~e-1; 
+    - public static Instream stream(int[] array); //따로존재~ 
 
     *배열로 스트림 생성 
     - Stream<String> s = Arrays.stream(names); (생성)
@@ -22,6 +23,12 @@ int sum = stm2.sum();//최종연산
     *컬렉션으로 스트림 생성 
     - List<string> list=.....  //// list.stream() (생성)
 
+    +int[] ??
+    int[] ar = {1,2,3};
+    IntStream s = Arrays.stream(ar); OO 
+    Stream<Integer> ss = Arrays.stream(ar); XX
+    Instream s = Arrays.stream(1,2,3)   XXXX
+    IntStream s = Arrays.stream(new int[]{1,2,3})OO
 
     *아하!
     interface Iterable<T>에
@@ -37,7 +44,8 @@ int sum = stm2.sum();//최종연산
         Stream<T> filter(Predicate<? super T> predicate)  //Stream<T>안에존재
         --------------------------------------boolean test(T t)
 
-    -2) map 맵핑
+    -2) map 맵핑 
+    : "새로운 Stream"을 형성하는 연산
         //ex) aaa bbbb ccccc -> 3 4 5 
         //Stream<T>에존재, Optional과 다름 
         <R> Stream<R> map(Function<? super T, ? extends R> mapper) 
@@ -48,7 +56,7 @@ int sum = stm2.sum();//최종연산
 
 
 3)리덕션과 reduce 메소드 (최종연산임)
-    * reduce
+    * reduce // 반환형이 T임 -> Stream<String> 이면 String 반환 하는거임 하나겠지? OO
     - T reduce(T identity, BinaryOperartor<T> accumlator) //Stream<T>에 존재
     ------------------------- T apply(T t1,T t2)--------------------
     public static void main(String[] args) {
@@ -56,7 +64,7 @@ int sum = stm2.sum();//최종연산
 
         BinaryOperator<String> lc = (s1,s2)->{
            return s1.length()>s2.length()?s1:s2;
-        } ;
+        } ; --> T apply(T t1, T t2); 
 
         String str = ls.stream().reduce("",lc); 
         //reduce의 첫번째 인자의 의미는?
@@ -75,3 +83,52 @@ int sum = stm2.sum();//최종연산
 *.count(); //갯수 리턴
 
 *A[] result = list.stream().toArray(A[]::new); 
+
+public static void main(String[] args) throws Exception {
+    List<String> list = Arrays.asList("Java", "Scala", "Groovy", "Python", "Go", "Swift");
+    list.stream()
+            .sorted()
+            .forEach(n -> System.out.println(n));
+    System.out.println();
+    list.stream()
+            .sorted(Comparator.reverseOrder())
+            .forEach(n -> System.out.println(n));
+}
+
+@map vs flatMap
+map() 는 내부 객체의 변환에만 사용이 되지만 flatMap() 은 변환과 Flatten(펼침)이 함께 사용됩니다.
+flatMap() = map() + Flattening
+
+*map
+String[] animal = new String[]{"cat","dog"};
+Stream<String> result = Arrays.stream(animal);
+Stream<String[]> an1 = result.map(s->s.split(""));
+        //아래 가능
+        Stream<Integer>  an2 = result.map(s->s.length());
+List<String[]> ans  = a1.collect(Collectors.toList());
+-> {String[],String[]};
+-> {["c","a","t'],["d","o","g']};
+        
+
+*flatMap
+List<List<String>> CC = new ArrayList<>();
+CC.add(Arrays.asList("a", "aa", "aaa"));
+CC.add(Arrays.asList("b", "bb", "bbb"));
+CC.add(Arrays.asList("c", "cc", "ccc"));
+Stream<List<String>> a =  CC.stream();
+//가능 Stream<Stream<String> > a2 = a.map(s->s.stream());
+//가능 Stream<String> a2 = a.flatMap(s->s.stream());
+
+
+IntBinaryOperator lc = (a, b)->{
+    return a>b?a:b;
+};
+BinaryOperator<String> lc = (s1,s2)->{
+    return s1.length()>s2.length()?s1:s2;
+} ; --> T apply(T t1, T t2);
+
+
+*sorted() --> Comparable<T> compareTo를 구현하고 있어야함 
+- Stream<T> sorted(Comparator<? super T> comparator )
+- Comparator -> int compare(a,b); 
+--> sorted((a,b)->a.length()-b.length())...

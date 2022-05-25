@@ -2,9 +2,9 @@
 --enum 도 사실상 하나의 클래스 
 -- tostring OK
 -- private 생성자 OK 
-enum Scale {
-    DO, RE, MI, FA, SO, RA, TI
-}
+enum Seasons { SPRING, SUMMER, FALL, WINTER }
+enum Scale {DO, RE, MI, FA, SO, RA, TI}
+enum Seasons{A,B,C,D}
 public static void main(String[] args) 
     Scale sc = Scale.DO;
     System.out.println(sc); //DO 출력  
@@ -30,7 +30,14 @@ public static void main(String[] args)
 
 
 *어노테이션
-@SuppressWarnings("a") //deprecation 무시 방법 
+@SuppressWarings(”deprecation”) //deprecation 무시 방법 
+@SuppressWarings(”null”)// 널 억제
+@SuppressWarings(”unused”)//사용  않는 코드 경고 억제
+
+@Target : 적용범위 지정하는 애
+@Target({FIELD, TYPE, TYPE_USE})//이런 느낌
+@Inherited :@Interited 애너테이션을 상위 클래스에 작성하면, 
+            하위 클래스도 상위 클래스의 애너테이션들이 적용됩니다.
 
 
 
@@ -131,3 +138,30 @@ Generator gen = () -> {
 };  // 두줄 이상이면 반드시 소괄호, 매개 없어도 () 입력
 
 
+
+
+
+
+//Calculator.java
+public class Calculator {
+  public static int staticMethod(int x, int y) {
+    return x + y;
+  }
+public int instanceMethod(int x, int y) {
+    return x * y;
+  }
+}
+class MethodReferences {
+  public static void main(String[] args) throws Exception {
+    IntBinaryOperator operator;
+
+    //static method
+    operator = Calculator::staticMethod;
+    System.out.println("정적메서드 결과 : " + operator.applyAsInt(3, 5));
+
+    //instance method
+    Calculator calculator = new Calculator();
+    operator = calculator::instanceMethod;
+    System.out.println("인스턴스 메서드 결과 : "+ operator.applyAsInt(3, 5));
+  }
+}

@@ -1,10 +1,10 @@
-*of
+*of Stream<t> of(T t)// Stream<T> of(T...values)!!!!
     ex1)
         List<String> sl = Arrays.asList("Toy","Toy2","Toy2","Toy3");        
-        Stream.of(sl)
+        Stream.of(sl)  //Stream<List<String>>
             .forEach(s-> System.out.print(s+ "-"));
         //[Toy, Toy2, Toy2, Toy3]- 
-        //Collection 인스턴스 그 자체로다가 사용해 벌임 
+
     ex2)
         Stream.of(11,22,33,44)
             .forEach(n-> System.out.print(n+1+"- "));
@@ -51,7 +51,7 @@ sum,count,average,min,max -> Int,Long,Double Stream에만 존재
 - OPtionalInt min()                                   -----consumer T: void accept(T t) 
 - OptionalInt max() -->getAsInt();
 
-[Stream<T>]
+[Stream<T>] !! 최종연산 
 - boolean allMatch(Predicate<? super T> predicate)  --bool test(T t)
 - boolean anyMatch(Predicate<? super T> predicate)
 - boolean noneMatch(Predicate<? super T> predicate)
@@ -59,9 +59,26 @@ sum,count,average,min,max -> Int,Long,Double Stream에만 존재
 ex)boolean b = IntStream.of(1, 2, 3, 4, 5)
                 .allMatch(n -> n%2 == 0);
 
-[IntStream]
+[IntStream] !! 최종임
 - boolean allMatch(IntPredicate predicate)
 - boolean anyMatch(IntPredicate predicate)
-- boolean noneMatch(IntPredicate predicate)
+- boolean noneMatch(IntPredicate predicate) 
 
+
+*IntStream intStream = IntStream.range(3,8);
+
+
+
+*collect
+- <R> R collect (Supplier<R> supplier,
+                 BiConsumer<R, ? super T> accumlator
+                 BiConsumer<R,R> cominer)
+- <R> R collect  (Supplier<R> supplier,
+                 ObjConsumer<R> accumlator
+                 BiConsumer<R,R> cominer)
+.collect(
+    () -> new ArrayList<>(), //저장 위치 
+    (c, s) -> c.add(s), // 저장위치.add(스트림 원소)
+    (lst1, lst2) -> lst1.addAll(lst2) //병렬일때만 의미 
+)
 

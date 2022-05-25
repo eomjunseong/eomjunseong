@@ -1,7 +1,13 @@
 Collectors.toList() //return list.stream().filter(s->s%2==0).collect(Collectors.toList());
 list.stream().map(s->s*2).collect(Collectors.toList());
 
+* Collector 인터페이스? --> .collect(Collectors.toList())
 Stream.concat(s1,s2).collect(Collectors.toList());
+
+Set<Student> femaleSet = totalList.stream()
+.filter(s -> s.getGender() == Student.Gender.Female)
+.collect(Collectors.toCollection(HashSet :: new));
+
 
 .toArray(String::new)?
 
@@ -20,6 +26,33 @@ P. 748
 
 *String[]::new
 *예외 
+*클래스 :: 메서드(정적 메소드)
+*참조 변수 :: 메서드
+*정적메소드 vs 인스턴스 메소드 ( static ox 차이)
+** 생성자 참조 
+** (a,b) -> {return new 클래스(a,b);};
+** 클래스::new --> 알아서 ab 순서대로 들어감
+*BiFunction
+
+
+*List<Integer> numbers = List.of(1, 3, 6, 7, 8, 11);
+*List<Integer> numbers = Arrays.asList(1,2,3,4,5); 차이
+
+*String[] strl = new String[]{"a", "b", "c"};
+*Stream<String> stream = Stream.of(strl); //OK
+Stream<String> stream = Stream.of("a", "b", "c"); //가변인자
+Stream<String> stream = Stream.of(new String[] {"a", "b", "c"});
+Stream<String> stream = Arrays.stream(new String[] {"a", "b", "c"});
+Stream<String> stream = Arrays.stream(new String[] {"a", "b", "c"}, 0, 3); //end 범위 미포함
+
+@@Arrays.stream(1,2,3)XXX
+@@Stream<Integer> aaa =Stream.of(1,2,3); OO
+@@IntStream aaa = Instream.of(1,2,3); OO
+
+
+*IntStream stream = IntStream.range(4, 10); -> 4~9
+
+*distinct() : 스트림에 중복요소 제거
 
 
 *Comparable/Comparator/equals/hashCode
