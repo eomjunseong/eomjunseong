@@ -2,6 +2,8 @@
 // Map<K,V> 은 Iterable 구현 X : Collection 상속 아니라,
 - List<String> list = new LinkedList<>();
 - Iterator<String> itr = list.iterator(); 
+- removeIf(Predicate<?super E> filter); -->bool test(T t); 
+
 
 *Iterator<E> (Interface Iterable<E>를 구현해야함 ....)
 - E        next();   //다음 인스턴스의 참조 값을 반환
