@@ -55,13 +55,15 @@ Consumer<List<Integer>> c = Collections::reverse;
 
 
 
-*참조변수를 통한 인스턴스 메소드 참조 
 class JustSort {
     public void sort(List<?> lst) {    // 인스턴스 메소드
         Collections.reverse(lst);
     }
 }
 
+
+*참조변수를 통한 인스턴스 메소드 참조 
+*클래스 이름을 통한 인스턴스 메소드 참조
 class ArrangeList3 {
     public static void main(String[] args) {
         List<Integer> ls = Arrays.asList(1, 3, 5, 7, 9);
@@ -78,7 +80,8 @@ class ArrangeList3 {
         //심지어, 
         // 람다식을
         // Consumer<List<Integer>> c = js::sort; 이렇게 바꿔도 가능 
-
+        // 클래스명::stati메소드 oo
+        // 참조변수명::인스턴스메소드 oo 단 변경 x 변수
         System.out.println(ls);
     }
 }
@@ -112,7 +115,7 @@ class NoObjectMethodRef {
 
         // 두 상자에 저장된 값 비교하여 더 큰 값 반환
         ToIntBiFunction<IBox, IBox> bf = (b1, b2) -> b1.larger(b2);
-        //ToIntBiFunction<IBox, IBox> bf = IBox::larger; OK //Static메소드가 아님에 유의 
+        //ToIntBiFunction<IBox, IBox> bf = IBox::larger; OK //static메소드가 아님에 유의 
         //ToIntBiFunction<IBox, IBox> bf = b1::larger; XXXX 
         int bigNum = bf.applyAsInt(ib1, ib2);
         System.out.println(bigNum);}
@@ -123,14 +126,17 @@ class NoObjectMethodRef {
 
 **exampleclass StringMaker {
 public static void main(String[] args) {
-    Function<char [],String> sm = String::new;
-//  Function<char[], String>sm= s-> new String(s);
-    char[] src = {'R', 'o', 'b', 'o', 't'};
-    System.out.println(sm.apply(src));
+        Function<char [],String> sm = String::new;
+    //  Function<char[], String>sm= s-> new String(s);
+        char[] src = {'R', 'o', 'b', 'o', 't'};
+        System.out.println(sm.apply(src));
+    }
 }
-}
 
 
-*클래스 이름을 통한 인스턴스 메소드 참조
 
-*생성자 참조ㅓ 
+
+
+
+
+*생성자 참조

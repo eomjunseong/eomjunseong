@@ -9,20 +9,23 @@ public final class Optional<T> extends Object{
 Optional<String> opt = Optional.of(new String("a"));
 Optional<String> opt = Optional.ofNullable(new String("a")); //null을 저장 
 
+
+*isPresent() vs ifPresent
+-isPresent --> boolean 
 -if(opt.isPresent()){} //가능
 -opt.ifPresent(s->System.out::Println)// 가능 
 -ifPresent : Optional인스턴스가 저장하고 있는 내용물이 잇으면 이를 인자로 전달
 --public void ifPresent(Consumer<? super T> consumer){}//void accept(T t)
 
 
-*map 
-//Optional<U>로 싸서 반환하는게 포인트
+*map : Optional<U>로 싸서 반환하는게 포인트 // optional<String> -> 반환 바껴도됨
 //Function<? super T,? extends U> -> U apply(T t){};
 public <U> Optional<U> map(Function<? super T,? extends U> mapper);
 // T 는 Option<T> 에서 정해짐.
--> Option<String>..... 이면 T는 String
+-> Option<String>..... 이면 U는 String
 -> Optional<String> os2 = os1.map(s->s.toUpperCase()) ;  
----->Optional<String> os2 = os1.<String>map(s->s.toUpperCase()) ; 이라고 안해도, uppercase 반환값 보고 컴파일러가 U를 String으로 결정
+---->Optional<String> os2 = os1.<String>map(s->s.toUpperCase()) ; 
+이라고 안해도, uppercase 반환값 보고 컴파일러가 U를 String으로 결정
 
 
 
@@ -42,3 +45,6 @@ String s1 = os1.map(s->s)
 *map vs flatMap
 map : Optional 인스턴스 반환 자동
 flatMap : 수동 
+
+
+*OptionalInt -> OptionalInt.of,,, OptionalInt.ofNullable OO --> but, map과 flatmap 사용 불가
