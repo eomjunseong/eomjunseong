@@ -1,9 +1,23 @@
-*of Stream<t> of(T t)// Stream<T> of(T...values)!!!!
+*of 
+    static <T> Stream<t> of(T t)  
+    static <T> Stream<T> of(T...values)
+    Stream<Integer> integerStream = Stream.of(1, 2, 3, 4); // OO --> IntStream?? XX
+    
     ex1)
         List<String> sl = Arrays.asList("Toy","Toy2","Toy2","Toy3");        
-        Stream.of(sl)  //Stream<List<String>>
-            .forEach(s-> System.out.print(s+ "-"));
-        //[Toy, Toy2, Toy2, Toy3]- 
+        
+        1)  Stream.of(sl)  
+                  .forEach(s-> System.out.print(s+ "-"));
+                //Stream<List<String>>
+                //[Toy, Toy2, Toy2, Toy3]- 
+        
+        2)  Stream<String> stringStream = sl.stream()
+                                            .map(s -> s.split(""))        //Stream<String[]>
+                                            .flatMap(s -> Arrays.stream(s)); //Stream<String> 
+            ==
+            Stream<String> stringStream2 = sl.flatMap(s -> Arrays.stream(s.split("")));
+
+
 
     ex2)
         Stream.of(11,22,33,44)
@@ -13,6 +27,9 @@
         IntStream is3 = IntStream.of(7,3,5); //7   3   5
         IntStream is2 = IntStream.range(5,8);// 5 6 7
         IntStream is1 = IntStream.rangeClosed(5,8); 5 6 7 8
+        DoubleStream....
+        LongStream....
+
 
 *parallel() : 이미 생성된 스트림을 병렬 스트림으로 만듬
 

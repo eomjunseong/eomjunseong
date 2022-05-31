@@ -20,15 +20,22 @@ int sum = stm2.sum();//최종연산
     *배열로 스트림 생성 
     - Stream<String> s = Arrays.stream(names); (생성)
 
-    *컬렉션으로 스트림 생성 
+    *컬렉션으로 스트림 생성 -->Collection인터안에 디폴트메소드로 정의되어있음 
     - List<string> list=.....  //// list.stream() (생성)
 
     +int[] ??
     int[] ar = {1,2,3};
-    IntStream s = Arrays.stream(ar); OO 
-    Stream<Integer> ss = Arrays.stream(ar); XX
-    Instream s = Arrays.stream(1,2,3)   XXXX
-    IntStream s = Arrays.stream(new int[]{1,2,3})OO
+    IntStream s = Arrays.stream(ar); OO //아래와 비교하기
+    Stream<Integer> ss = Arrays.stream(ar); XX//위와 비교 해보기
+    Instream s = Arrays.stream(1,2,3)   XXXX //가변인자 안되네! 아하! 
+    IntStream s = Arrays.stream(new int[]{1,2,3})OO 
+
+    *of 
+    static <T> Stream<t> of(T t)  
+    static <T> Stream<T> of(T...values)
+    Stream<Integer> integerStream = Stream.of(1, 2, 3, 4); // OO --> IntStream?? XX
+    
+
 
     *아하!
     interface Iterable<T>에
@@ -37,7 +44,8 @@ int sum = stm2.sum();//최종연산
     }있음 //Collection<E>가 이를 상속 -> 그래서 list.forEach() ㅇㅇ
     but
     Stream 클래스안에 똑같은 forEach가 존재 ㅇㅇ // 최종연산에서 이것을 쓰는것임
-
+    --> Stream 안에 forEach OO
+    --> Collection 안에, Iterable 안에 forEach OO
 
 2)컬렉션/배열 공통 기능
     -1) filter 필터링
@@ -79,10 +87,14 @@ int sum = stm2.sum();//최종연산
 
 
 
-*.collect(Collectors.toList()); // 최종적으로 리스트의 형태로 만듬.
-*.count(); //갯수 리턴
 
+&&&&&!!! 상태 저장!!!!&&&&&&&&&&&
+*.collect(Collectors.toList()); // 최종적으로 리스트의 형태로 만듬.
+- List<String> collect = list.stream().collect(Collectors.toList());
 *A[] result = list.stream().toArray(A[]::new); 
+
+
+*.count(); //갯수 리턴
 
 public static void main(String[] args) throws Exception {
     List<String> list = Arrays.asList("Java", "Scala", "Groovy", "Python", "Go", "Swift");
@@ -105,6 +117,7 @@ Stream<String> result = Arrays.stream(animal);
 Stream<String[]> an1 = result.map(s->s.split(""));
         //아래 가능
         Stream<Integer>  an2 = result.map(s->s.length());
+        
 List<String[]> ans  = a1.collect(Collectors.toList());
 -> {String[],String[]};
 -> {["c","a","t'],["d","o","g']};
