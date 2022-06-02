@@ -30,10 +30,19 @@ int sum = stm2.sum();//최종연산
     Instream s = Arrays.stream(1,2,3)   XXXX //가변인자 안되네! 아하! 
     IntStream s = Arrays.stream(new int[]{1,2,3})OO 
 
-    *of 
+    *of // 컬렉션은 하나로 처리해 버리네 ; 
     static <T> Stream<t> of(T t)  
     static <T> Stream<T> of(T...values)
     Stream<Integer> integerStream = Stream.of(1, 2, 3, 4); // OO --> IntStream?? XX
+    String[] ss = new String[]{"aa","bb","cc"};
+    Stream<String> ss1 = Stream.of(ss); --> count = 3 
+    List<String> list = new ArrayList<>();
+    list.add("aa1");
+    list.add("aa2");
+    list.add("aa3");
+    Stream.of(list)--> Stream<List<String>> + count = 1  
+
+        
     
 
 
